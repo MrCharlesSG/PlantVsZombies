@@ -3,17 +3,12 @@ package tp1.p2.logic.gameobjects;
 import tp1.p2.logic.GameItem;
 import tp1.p2.view.Messages;
 
-public class Zombie extends GameObject{
+public abstract class Zombie extends GameObject{
 	
-	public static final int DANO=1;
-    public static final int INI_LIFES=5;
-
+	protected int velocidad;
 	
 	public Zombie() {
 		super();
-		this.lifes=INI_LIFES;
-		this.damage=DANO;
-
 	}
 	
 	@Override
@@ -26,19 +21,12 @@ public class Zombie extends GameObject{
 		return 0;
 	}
 
-	@Override
-	protected String getSymbol() {
-		return Messages.ZOMBIE_SYMBOL;
-	}
 
-	@Override
-	public String getDescription() {
-		return Messages.ZOMBIE_DESCRIPTION;
-	}
-
-	private void avanza() {
-		if(this.cycles%2==0 ) {
-			this.col--;
+	protected abstract boolean frecuencyOfRun();
+	
+	private void advance() {
+		if(frecuencyOfRun() ) {
+			this.col-=this.velocidad;
 		}
 		cycles++;
 	}
@@ -60,10 +48,10 @@ public class Zombie extends GameObject{
 	public void update() {
 		GameItem obj=game.getGameItemInPosition(col-1, row);
 		if(obj==null) {
-			avanza();
+			advance();
 		}
 		else {
-			if(obj.receiveZombieAttack(DANO)) {
+			if(obj.receiveZombieAttack(this.damage)) {
 				if(!obj.isAlive()) {
 					game.eliminate(obj);
 				}
@@ -72,6 +60,11 @@ public class Zombie extends GameObject{
 	}
 	
 
+	@Override
+	public String getDescription() {
+		return Messages.format(Messages.ZOMBIE_DESCRIPTION,)
+	}
+	
 	public int getCycles() {
 		return cycles;
 	}

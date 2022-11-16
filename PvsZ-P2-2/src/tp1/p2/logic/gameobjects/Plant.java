@@ -1,6 +1,7 @@
 package tp1.p2.logic.gameobjects;
 
 import tp1.p2.logic.GameWorld;
+import tp1.p2.view.Messages;
 
 public abstract class Plant extends GameObject {
 	
@@ -19,20 +20,13 @@ public abstract class Plant extends GameObject {
 		return false;
 	}
 	
-	
-	
 	@Override
-	abstract protected String getSymbol();
+	public String getDescription() {
+		return String.format(Messages.PLANT_DESCRIPTION,getSymbol(), this.coste, this.damage, getIniLifes());
+	}
 
-	@Override
-	abstract public String getDescription();
+	abstract int getIniLifes();
 	
-	abstract public String getName();
-	
-	abstract public int getCoste();
-
-	abstract public void onEnter();
-
 	@Override
 	public void onExit() {
 		

@@ -9,6 +9,7 @@ public class Peashooter extends Plant {
 	public final int COSTE=50;
 	public static final int DANO=1;
     public static final int INI_LIFES=3;
+    
     Peashooter(){
     	super();
     	this.lifes=INI_LIFES;
@@ -19,11 +20,6 @@ public class Peashooter extends Plant {
 	@Override
 	protected String getSymbol() {
 		return Messages.PEASHOOTER_SYMBOL;
-	}
-
-	@Override
-	public String getDescription() {
-		return String.format(Messages.PLANT_DESCRIPTION,getSymbol(), COSTE, DANO, INI_LIFES);
 	}	
 	
 	@Override
@@ -69,6 +65,11 @@ public class Peashooter extends Plant {
 				obj=game.getGameItemInPosition(i,row);
 			}
 		}
+	}
+
+	@Override
+	public int getIniLifes() {
+		return INI_LIFES;
 	}
 
 	

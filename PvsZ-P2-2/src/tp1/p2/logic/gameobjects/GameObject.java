@@ -74,6 +74,8 @@ public abstract class GameObject implements GameItem {
 	abstract protected String getSymbol();
 	
 	abstract public String getDescription();
+	
+	abstract public String getName();
 
 	abstract public void update();
 	

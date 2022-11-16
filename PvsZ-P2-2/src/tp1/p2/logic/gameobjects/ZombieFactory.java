@@ -10,7 +10,10 @@ public class ZombieFactory {
 	
 	
 	private static final List<Zombie> AVAILABLE_ZOMBIES = Arrays.asList(
-			new Zombie()
+			new ZombieSporty(),
+			new ZombieBucketHead(),
+			new ZombieCommon(),
+			new ZombieExplosive()
 		);
 	
 	public static List<Zombie> getAvailableZombies() {
