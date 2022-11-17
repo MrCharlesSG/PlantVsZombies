@@ -71,6 +71,7 @@ public class ZombiesManager {
 
 		if (canAdd) {
 			Zombie zb=ZombieFactory.spawnZombie(row,GameWorld.NUM_COLS, game, zombieType);
+			this.remainingZombies--;
 			game.addItem(zb);
 			this.zombiesAlived++;
 			
