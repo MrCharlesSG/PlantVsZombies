@@ -1,8 +1,13 @@
 package tp1.p2.logic.actions;
 
+import tp1.p2.logic.GameItem;
 import tp1.p2.logic.GameWorld;
 
 public class ExplosionAction implements GameAction {
+
+	public class execute {
+
+	}
 
 	private int col;
 
@@ -18,7 +23,16 @@ public class ExplosionAction implements GameAction {
 
 	@Override
 	public void execute(GameWorld game) {
-		// TODO add your code here
+		for(int col=this.col-1; col <= this.col+1; col++) {
+			for(int row=this.row-1; row<=this.row+1; row++) {
+				GameItem o = game.getGameItemInPosition(col, row);
+				if(o!=null) {
+					if(!o.receivePlantAttack(damage)) {
+						o.receiveZombieAttack(damage);
+					}
+				}
+			}
+		}
 	}
 
 }

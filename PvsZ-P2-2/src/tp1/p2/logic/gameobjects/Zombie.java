@@ -5,10 +5,16 @@ import tp1.p2.view.Messages;
 
 public abstract class Zombie extends GameObject{
 	
-	protected int velocidad;
+	protected int speed;
+	public static final int DANO_DEFAULT=1;
+    public static final int INI_LIFES_DEFAULT=8;
+    public static final int SPEED_DEFAULT=1;
 	
 	public Zombie() {
 		super();
+		this.lifes=INI_LIFES_DEFAULT;
+		this.damage=DANO_DEFAULT;
+		this.speed=SPEED_DEFAULT;
 	}
 	
 	@Override
@@ -21,12 +27,10 @@ public abstract class Zombie extends GameObject{
 		return 0;
 	}
 
-
-	protected abstract boolean frecuencyOfRun();
 	
 	private void advance() {
-		if(frecuencyOfRun() ) {
-			this.col-=this.velocidad;
+		if(this.cycles%this.speed==0 ) {
+			this.col--;
 		}
 		cycles++;
 	}
@@ -38,23 +42,18 @@ public abstract class Zombie extends GameObject{
 
 	@Override
 	public void onExit() {
-		// TODO Auto-generated method stub
-		//reducir en numero zombies de zombie manager
-		
 		game.reduceZombie();
 	}
 	
 	
 	public void update() {
-		GameItem obj=game.getGameItemInPosition(col-1, row);
-		if(obj==null) {
-			advance();
-		}
-		else {
-			if(obj.receiveZombieAttack(this.damage)) {
-				if(!obj.isAlive()) {
-					game.eliminate(obj);
-				}
+		if(this.isAlive()) {
+			GameItem obj=game.getGameItemInPosition(col-1, row);
+			if(obj==null) {
+				advance();
+			}
+			else {
+				obj.receiveZombieAttack(this.damage);
 			}
 		}
 	}
@@ -62,13 +61,12 @@ public abstract class Zombie extends GameObject{
 
 	@Override
 	public String getDescription() {
-		return Messages.format(Messages.ZOMBIE_DESCRIPTION,)
+		return String.format(Messages.ZOMBIE_DESCRIPTION,this.getName(), this.speed, this.damage, this.getIniLifes());
 	}
 	
 	public int getCycles() {
 		return cycles;
 	}
-
 
 	@Override
 	public boolean receivePlantAttack(int damage) {
@@ -84,4 +82,7 @@ public abstract class Zombie extends GameObject{
 	public boolean catchSun() {
 		return false;
 	}
+	
+	abstract public int getIniLifes();
+
 }

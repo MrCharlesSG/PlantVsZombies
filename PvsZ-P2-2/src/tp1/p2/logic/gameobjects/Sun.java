@@ -48,9 +48,6 @@ public class Sun extends GameObject {
 	@Override
 	public void update() {
 		this.lifes--;
-		if(!this.isAlive()) {
-			game.eliminate(this);
-		}
 	}
 
 	@Override
@@ -69,8 +66,13 @@ public class Sun extends GameObject {
 	}
 	
 	public boolean catchSun() {
-		game.eliminate(this);
+		game.convertSun(VALUE_OF_CHANGE);
 		return true;
+	}
+
+	@Override
+	public String getName() {
+		return Messages.SUN_DESCRIPTION;
 	}
 	
 	

@@ -4,18 +4,15 @@ import tp1.p2.view.Messages;
 
 public class Sunflower extends Plant {
 
-	public final int COSTE=20;
+	public static final int COSTE=20;
 	public static final int DANO=1;
     public static final int INI_LIFES=3;
-    public static final int NUMERO_SOLES_GENERADOS=10;
-	
-	protected int numSolesGenera;
+    public static final int NUMERO_SOLES_GENERADOS=1;
     
     Sunflower(){
     	super();
     	this.lifes=INI_LIFES;
     	this.coste=COSTE;
-    	this.numSolesGenera=NUMERO_SOLES_GENERADOS;
     }
 
 	@Override
@@ -24,30 +21,26 @@ public class Sunflower extends Plant {
 	}
 	
 	@Override
-	public String getDescription() {
-		return String.format(Messages.PLANT_DESCRIPTION,getSymbol(), COSTE, DANO, INI_LIFES);
-	}
-
-	@Override
-	public int getCoste() {
-		return this.COSTE;
+	protected String getShortcut() {
+		return Messages.SUNFLOWER_NAME_SHORTCUT;
 	}
 	
+	@Override
 	public String getName() {
 		return Messages.SUNFLOWER_NAME;
-	}
-
-	@Override
-	public void onEnter() {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	@Override
 	public void update() {
-		if(this.cycles%2==0) {
+		if(this.cycles%3==0) {
 			game.GeneraSunCoins(NUMERO_SOLES_GENERADOS);
 		}
-		
 	}
+
+	@Override
+	int getIniLifes() {
+		return INI_LIFES;
+	}
+
+	
 }

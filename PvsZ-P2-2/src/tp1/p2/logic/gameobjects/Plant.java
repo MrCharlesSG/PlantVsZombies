@@ -22,9 +22,11 @@ public abstract class Plant extends GameObject {
 	
 	@Override
 	public String getDescription() {
-		return String.format(Messages.PLANT_DESCRIPTION,getSymbol(), this.coste, this.damage, getIniLifes());
+		return String.format(Messages.PLANT_DESCRIPTION,getShortcut(), this.coste, this.damage, getIniLifes());
 	}
-
+	
+	abstract protected String getShortcut();
+	
 	abstract int getIniLifes();
 	
 	@Override
@@ -32,11 +34,21 @@ public abstract class Plant extends GameObject {
 		
 	}
 
+	@Override
+	public void onEnter() {
+		
+	}
+	
 	public boolean hasArrive() {
 		return false;
 	}
 	
 	public boolean catchSun() {
 		return false;
+	}
+	
+	@Override
+	public int getCoste() {
+		return this.coste;
 	}
 }

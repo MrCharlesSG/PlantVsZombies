@@ -4,9 +4,26 @@ import tp1.p2.view.Messages;
 
 public class ZombieBucketHead extends Zombie{
 
+    public static final int INI_LIFES=8;
+    public static final int SPEED=4;
+
+	
+	public ZombieBucketHead() {
+		super();
+		this.lifes=INI_LIFES;
+		this.speed=SPEED;
+
+		}
+	
+	
 	@Override
-	protected boolean frecuencyOfRun() {
-		return this.cycles%4==0;
+	public boolean receiveZombieAttack(int damage) {
+		return false;
+	}
+
+	@Override
+	public int getCoste() {
+		return 0;
 	}
 
 	@Override
@@ -16,8 +33,12 @@ public class ZombieBucketHead extends Zombie{
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return Messages.BUCKET_HEAD_ZOMBIE_NAME;
 	}
 
+
+	@Override
+	public int getIniLifes() {
+		return INI_LIFES;
+	}	
 }

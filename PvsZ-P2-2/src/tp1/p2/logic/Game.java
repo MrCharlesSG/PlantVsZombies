@@ -1,16 +1,19 @@
+
 package tp1.p2.logic;
 
+import static tp1.p2.view.Messages.error;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.List;
 import java.util.Random;
 
-import tp1.p2.logic.ZombiesManager;
 import tp1.p2.control.Command;
 import tp1.p2.control.ExecutionResult;
 import tp1.p2.control.Level;
+import tp1.p2.logic.actions.GameAction;
 import tp1.p2.logic.gameobjects.GameObject;
-import tp1.p2.logic.GameObjectContainer;
-
-//TO-DO
-//updates
+import tp1.p2.view.Messages;
 
 public class Game implements GameStatus, GameWorld{
 	
@@ -25,6 +28,8 @@ public class Game implements GameStatus, GameWorld{
 	ZombiesManager zombiesMan;
 	
 	Random rand;
+	
+	private Deque<GameAction> actions;
 	
 	private int cycle;
 
@@ -52,14 +57,6 @@ public class Game implements GameStatus, GameWorld{
 	@Override
 	public void playerQuits() {
 		playerQuits=true;
-	}
-
-	@Override
-	public void update() {
-		zombiesMan.addZombie();
-		contenedor.update();
-		
-		
 	}
 
 	@Override
@@ -150,11 +147,6 @@ public class Game implements GameStatus, GameWorld{
 	}
 
 	@Override
-	public void eliminate(GameItem obj) {
-		contenedor.eliminate(obj);
-	}
-
-	@Override
 	public void zombiesWin() {
 		this.theWinner=false;
 	}
@@ -182,4 +174,53 @@ public class Game implements GameStatus, GameWorld{
 	public boolean catchSun(int col, int row) {
 		return contenedor.catchSun(col, row);
 	}
+	
+	@Override
+	public void update() {
+
+	    // 1. Execute pending actions
+			executePendingActions();
+
+			// 2. Execute game Actions
+
+			// 3. Game object updates
+			this.contenedor.update();
+			// 4. & 5. Remove dead and execute pending actions
+			boolean deadRemoved = true;
+			while (deadRemoved || areTherePendingActions()) {
+				// 4. Remove dead
+				deadRemoved = contenedor.removeDead();
+
+				// 5. execute pending actions
+				executePendingActions();
+			}
+
+			this.cycle++;
+
+			// 6. Notify commands that a new cycle started
+			Command.newCycle();
+	}
+
+	@Override
+	public void pushAction(GameAction gameAction) {
+	    this.actions.addLast(gameAction);
+	}
+
+	private void executePendingActions() {
+	   while (!this.actions.isEmpty()) {
+	      GameAction action = this.actions.removeLast();
+	      action.execute(this);
+	   }
+	}
+
+	private boolean areTherePendingActions() {
+	    return this.actions.size() > 0;
+	}
+
+	@Override
+	public void convertSun(int valueOfChange) {
+		suncoins+=valueOfChange;
+	}
+
+	
 }

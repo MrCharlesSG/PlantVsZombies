@@ -16,8 +16,8 @@ public class GameObjectContainer {
 	
 	// TODO add your code here
 	public void addObject(GameObject obj) {
-		obj.onEnter();
 		gameObjects.add(obj);
+		obj.onEnter();
 	}
 
 	public boolean isEmpty(int col, int row) {
@@ -59,24 +59,12 @@ public class GameObjectContainer {
 		}
 		return buffer.toString();
 	}
-	
-	public void eliminate(GameItem obj) {
-		int i=0, size=gameObjects.size();
-		boolean eliminado=false;
-		while(i<size && !eliminado) {
-			if(obj==gameObjects.get(i)) {
-				gameObjects.remove(i);
-				eliminado=true;
-			}
-			else {
-				i++;
-			}
-		}
-	}
 
 	public void update() {
-		for (GameObject o: gameObjects) {
-			o.update();
+
+		for (int i=0;i < (gameObjects.size()); i++) {
+			
+			gameObjects.get(i).update();
 		}
 	}
 	
@@ -107,12 +95,27 @@ public class GameObjectContainer {
 			aux=gameObjects.get(i);
 			if(aux.isInPosition(col, row)) {
 				if(aux.catchSun()) {
-					this.eliminate(aux);
+					gameObjects.remove(i);
 					return true;
 				}
 			}
 		}
 		return false;
+	}
+
+	public boolean removeDead() {
+		boolean result=false;
+		int i=0;
+		for(GameObject obj: gameObjects) {
+			if(!obj.isAlive()) {
+				obj.onExit();
+				gameObjects.remove(i);
+				
+				result=true;
+			}	
+			i++;
+		}
+		return result;
 	}
 
 	

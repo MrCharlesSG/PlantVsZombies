@@ -3,6 +3,8 @@ package tp1.p2.logic;
 import tp1.p2.control.Command;
 import tp1.p2.control.ExecutionResult;
 import tp1.p2.control.Level;
+import tp1.p2.logic.actions.ExplosionAction;
+import tp1.p2.logic.actions.GameAction;
 import tp1.p2.logic.gameobjects.GameObject;
 import tp1.p2.logic.gameobjects.Peashooter;
 
@@ -32,8 +34,6 @@ public interface GameWorld {
 	GameObject isInPosition(int col, int row);
 		
 	void GeneraSunCoins(int numSunCoins);
-
-	void eliminate(GameItem obj);
 	
 	void reduceZombie();
 
@@ -46,5 +46,9 @@ public interface GameWorld {
 	public int getCycle();
 
 	boolean catchSun(int col, int row);
+
+	void convertSun(int valueOfChange);
+
+	void pushAction(GameAction gameAction);
 
 }

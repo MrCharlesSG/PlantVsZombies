@@ -3,15 +3,9 @@ package tp1.p2.logic.gameobjects;
 import tp1.p2.view.Messages;
 
 public class ZombieCommon extends Zombie {
-
-	public static final int DANO=1;
-    public static final int INI_LIFES=5;
-    public static final int VELOCIDAD=1;
 	
 	ZombieCommon(){
-		this.lifes=INI_LIFES;
-		this.damage=DANO;
-		this.velocidad=VELOCIDAD;
+		super();
 	}
 
 	@Override
@@ -25,12 +19,12 @@ public class ZombieCommon extends Zombie {
 	}
 
 	@Override
-	protected boolean frecuencyOfRun() {
-		return cycles%2==0;
+	public String getName() {
+		return Messages.ZOMBIE_NAME;
 	}
 
 	@Override
-	public String getName() {
-		return Messages.ZOMBIE_NAME;
+	public int getIniLifes() {
+		return INI_LIFES_DEFAULT;
 	}	
 }

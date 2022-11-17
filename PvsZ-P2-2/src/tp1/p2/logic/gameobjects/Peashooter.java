@@ -23,31 +23,26 @@ public class Peashooter extends Plant {
 	}	
 	
 	@Override
-	public boolean receiveZombieAttack(int damage) {
-		this.lifes-=damage;
-		return true;
+	protected String getShortcut() {
+		return Messages.PEASHOOTER_NAME_SHORTCUT;
 	}
 	
-	public int getCoste() {
-		return this.COSTE;
-	}
-
 	@Override
 	public String getName() {
 		return Messages.PEASHOOTER_NAME;
 	}
-
+	
 	@Override
-	public void onEnter() {
-		
+	public int getIniLifes() {
+		return INI_LIFES;
 	}
 	
+	@Override
 	public void update() {
-		
 		peashooterDispara(row, DANO);
 	}
 	
-	public void peashooterDispara(int row, int DANO) {
+	private void peashooterDispara(int row, int DANO) {
 		int i=0;
 		boolean yaDisparado=false;
 		GameItem obj=game.getGameItemInPosition(i, row);
@@ -55,9 +50,6 @@ public class Peashooter extends Plant {
 			if(obj!=null) {
 				if(obj.receiveZombieAttack(DANO)) {
 					yaDisparado=true;
-					if(!obj.isAlive()) {
-						game.eliminate(obj);
-					}
 				}		
 			} 
 			else {
@@ -67,11 +59,6 @@ public class Peashooter extends Plant {
 		}
 	}
 
-	@Override
-	public int getIniLifes() {
-		return INI_LIFES;
-	}
 
-	
 
 }
