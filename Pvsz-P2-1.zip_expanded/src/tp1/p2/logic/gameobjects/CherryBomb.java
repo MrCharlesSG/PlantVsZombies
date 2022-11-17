@@ -2,6 +2,7 @@ package tp1.p2.logic.gameobjects;
 
 import tp1.p2.logic.GameItem;
 import tp1.p2.logic.GameWorld;
+import tp1.p2.logic.actions.ExplosionAction;
 import tp1.p2.view.Messages;
 
 public class CherryBomb extends Plant {
@@ -52,17 +53,18 @@ public class CherryBomb extends Plant {
 	
 	@Override
 	public void update() {
-		
-		if(this.cycles%TIME_TO_EXPLODE==0) {
-			//Explotar jijijija
+		if(isAlive()) {
+			if(this.cycles%TIME_TO_EXPLODE==0) {
+				onExit();
+			}
 		}
 		cycles++;
 	}
 	
 	@Override
 	public void onExit() {
-		// TODO Auto-generated method stub
-		
+		new ExplosionAction(row,col,damage).execute(game);
 	}
+
 
 }

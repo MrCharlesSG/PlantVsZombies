@@ -88,6 +88,6 @@ public abstract class GameObject implements GameItem {
 		this.col=col;
 		this.row=row;
 	}
-
+	
 	public abstract boolean haLlegado();
 }

@@ -52,7 +52,6 @@ public class BucketHead extends Zombie {
 
 	@Override
 	public void onExit() {
-		// TODO Auto-generated method stub
 		//reducir en numero zombies de zombie manager
 		
 		game.reduceZombie();
@@ -94,6 +93,5 @@ public class BucketHead extends Zombie {
 	public String getName() {
 		return Messages.BUCKET_HEAD_ZOMBIE_NAME;
 	}
-	
 	
 }

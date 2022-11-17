@@ -7,7 +7,6 @@ public class Sporty extends Zombie {
 	
 	public static final int DANO=1;
     public static final int INI_LIFES=2;
-    public static final int SPEED=1;
 	
 	public Sporty() {
 		super();
@@ -81,11 +80,6 @@ public class Sporty extends Zombie {
 	public boolean receivePlantAttack(int damage) {
 		this.lifes-=damage;
 		return true;
-	}
-
-	@Override
-	public boolean haLlegado() {
-		return this.isInPosition(-1, this.row);
 	}
 
 

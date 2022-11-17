@@ -2,6 +2,8 @@ package tp1.p2.logic.gameobjects;
 
 public abstract class Zombie extends GameObject {
 	
+	protected int SPEED=2;
+	
 	Zombie(){
 		super();
 	}
@@ -27,7 +29,14 @@ public abstract class Zombie extends GameObject {
 
 	abstract public void onExit();
 
-	public boolean haLlegado() {//No se si dejarlo aqui o que cada zombie implemente el suyo, no creo que tenga sentido hacerlo para todos
+	public void frequencyOfRun() {
+		if(this.cycles%SPEED==0) {
+			this.col--;
+		}
+		this.cycles++;
+	}
+	
+	public boolean haLlegado() {
 		return this.isInPosition(-1, this.row);
 	}
 	

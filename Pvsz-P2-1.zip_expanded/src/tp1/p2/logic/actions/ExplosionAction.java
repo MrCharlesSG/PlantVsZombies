@@ -1,5 +1,6 @@
 package tp1.p2.logic.actions;
 
+import tp1.p2.logic.GameItem;
 import tp1.p2.logic.GameWorld;
 import tp1.p2.logic.gameobjects.GameObject;
 import tp1.p2.logic.gameobjects.Zombie;
@@ -20,17 +21,14 @@ public class ExplosionAction implements GameAction {
 
 	@Override
 	public void execute(GameWorld game) {
-		// TODO add your code here
-		int[] array = {-1,-1,1,1,1,1,-1,-1};//Array para recorrer el area de la explosion
-		int x = this.row, y = this.col;
-		int inicio=y-1;
-		boolean vuelta=false;
-		while(!vuelta) {
-			
-			
-			
+		for(int i=this.col-1;i<=this.col+1;i++) {
+			for(int j=this.row-1;j<=this.row+1;j++) {
+				GameItem obj = game.getGameItemInPosition(i, j);
+				if(!obj.receivePlantAttack(damage)) {
+					obj.receiveZombieAttack(damage);
+				}
+			}
 			
 		}
 	}
-
 }

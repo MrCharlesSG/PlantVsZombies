@@ -1,13 +1,14 @@
 package tp1.p2.logic.gameobjects;
 
 import tp1.p2.logic.GameItem;
+import tp1.p2.logic.actions.ExplosionAction;
 import tp1.p2.view.Messages;
 
 public class ExplosiveZombie extends Zombie{
 	
 	public static final int DANO=1;
     public static final int INI_LIFES=5;
-    public static final int EXPLOSION=3;
+    public static final int EXPLOSION=10;
 	
     public static final int SPEED=2;
     
@@ -54,10 +55,7 @@ public class ExplosiveZombie extends Zombie{
 
 	@Override
 	public void onExit() {
-		// TODO Auto-generated method stub
-		//reducir en numero zombies de zombie manager
-		//Aqui tiene que explotar, antes de desaparecer
-		
+		new ExplosionAction(row,col,EXPLOSION).execute(game);
 		game.reduceZombie();
 	}
 	
@@ -99,4 +97,5 @@ public class ExplosiveZombie extends Zombie{
 	public String getName() {
 		return Messages.EXPLOSIVE_ZOMBIE_NAME;
 	}
+	
 }

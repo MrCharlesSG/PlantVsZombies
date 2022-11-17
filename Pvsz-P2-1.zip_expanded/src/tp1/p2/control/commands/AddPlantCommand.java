@@ -21,7 +21,6 @@ public class AddPlantCommand extends Command implements Cloneable {
 
 	public AddPlantCommand() {
 		this(true);
-	
 	}
 
 	public AddPlantCommand(boolean consumeCoins) {

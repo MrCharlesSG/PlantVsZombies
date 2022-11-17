@@ -85,14 +85,10 @@ public class DefaultZombie extends Zombie{
 		return true;
 	}
 
-	@Override
-	public boolean haLlegado() {
-		return this.isInPosition(-1, this.row);
-	}
-
 
 	@Override
 	public String getName() {
 		return Messages.ZOMBIE_NAME;
 	}
+	
 }
