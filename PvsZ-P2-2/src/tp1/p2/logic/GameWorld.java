@@ -50,5 +50,7 @@ public interface GameWorld {
 	void convertSun(int valueOfChange);
 
 	void pushAction(GameAction gameAction);
+	
+	boolean isFullyOcuppied(int col, int row);
 
 }

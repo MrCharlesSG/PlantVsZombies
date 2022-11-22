@@ -50,7 +50,10 @@ public class Peashooter extends Plant {
 			if(obj!=null) {
 				if(obj.receiveZombieAttack(DANO)) {
 					yaDisparado=true;
-				}		
+				}else {
+					i++;
+					obj=game.getGameItemInPosition(i,row);
+				}
 			} 
 			else {
 				i++;

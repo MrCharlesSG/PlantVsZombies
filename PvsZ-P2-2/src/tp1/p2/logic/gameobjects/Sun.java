@@ -75,5 +75,9 @@ public class Sun extends GameObject {
 		return Messages.SUN_DESCRIPTION;
 	}
 	
-	
+	@Override
+	public boolean fillPosition() {
+		return false;
+	}
+
 }

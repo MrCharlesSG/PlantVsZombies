@@ -93,4 +93,10 @@ public abstract class GameObject implements GameItem {
 	public abstract boolean hasArrive();
 
 	public abstract boolean catchSun();
+
+	public boolean fillPosition() {
+		return true;
+	}
+
+
 }

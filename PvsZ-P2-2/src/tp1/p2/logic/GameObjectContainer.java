@@ -19,20 +19,13 @@ public class GameObjectContainer {
 		gameObjects.add(obj);
 		obj.onEnter();
 	}
-
-	public boolean isEmpty(int col, int row) {
-		for (GameObject o: gameObjects) {
-			if(o.isInPosition(col, row)) {
-				return false;
-			}
-		}
-		return true;
-	}
 	
-	public GameObject isInPosition(int col, int row) {
+	public GameObject anObjectInPosition(int col, int row) {
 		for (GameObject o: gameObjects) {
 			if(o.isInPosition(col, row)) {
-				return o;
+				if(o.fillPosition()) {
+					return o;
+				}
 			}
 		}
 		return null;
@@ -58,14 +51,6 @@ public class GameObjectContainer {
 			return Messages.NOTHING_ICON;
 		}
 		return buffer.toString();
-	}
-
-	public void update() {
-
-		for (int i=0;i < (gameObjects.size()); i++) {
-			
-			gameObjects.get(i).update();
-		}
 	}
 	
 	public boolean finishedGame(GameWorld game) {
@@ -118,5 +103,32 @@ public class GameObjectContainer {
 		return result;
 	}
 
-	
+	public void update() {
+		// Can't use for-each loop (for(GameObject g : gameObjexts)) without errors.
+		for(int i = 0; i < gameObjects.size(); i++) {
+			GameObject g = gameObjects.get(i);
+			if(g.isAlive()) {
+				g.update();
+			}
+		}
+	}
+
+	public boolean isFullyOccupied(int col, int row) {
+		int i=0;
+		boolean fullyOcuppied = false;
+
+		while (i<gameObjects.size() && !fullyOcuppied) {
+			GameObject g = gameObjects.get(i);
+			if (g.isAlive() && g.isInPosition(col, row)) {
+				fullyOcuppied = g.fillPosition();
+			}
+			i++;
+		}
+
+		return fullyOcuppied;
+	}
+
+	// TODO add your code here
+
 }
+
