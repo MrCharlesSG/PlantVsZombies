@@ -28,7 +28,6 @@ public class ExplosionAction implements GameAction {
 					obj.receiveZombieAttack(damage);
 				}
 			}
-			
 		}
 	}
 }

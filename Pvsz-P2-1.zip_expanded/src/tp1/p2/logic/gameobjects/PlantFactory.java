@@ -23,7 +23,6 @@ public class PlantFactory {
 				return true;
 			}
 		}
-
 		return false;
 	}
 

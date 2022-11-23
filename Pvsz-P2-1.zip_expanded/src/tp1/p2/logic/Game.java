@@ -1,16 +1,14 @@
+
 package tp1.p2.logic;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Random;
 
-import tp1.p2.logic.ZombiesManager;
 import tp1.p2.control.Command;
-import tp1.p2.control.ExecutionResult;
 import tp1.p2.control.Level;
+import tp1.p2.logic.actions.GameAction;
 import tp1.p2.logic.gameobjects.GameObject;
-import tp1.p2.logic.GameObjectContainer;
-
-//TO-DO
-//updates
 
 public class Game implements GameStatus, GameWorld{
 	
@@ -20,11 +18,13 @@ public class Game implements GameStatus, GameWorld{
 	
 	private int suncoins;
 	
-	GameObjectContainer contenedor;
+	GameObjectContainer container;
 	
 	ZombiesManager zombiesMan;
 	
 	Random rand;
+
+	private Deque<GameAction> actions = new ArrayDeque<>();
 	
 	private int cycle;
 
@@ -43,7 +43,7 @@ public class Game implements GameStatus, GameWorld{
 		this.seed=seed;
 		this.finish=false;
 		this.playerQuits=false;
-		contenedor=new 	GameObjectContainer();
+		container=new 	GameObjectContainer();
 		this.level=level;
 		this.theWinner=false;
 		this.zombiesMan= new ZombiesManager(this, level, rand);
@@ -55,14 +55,6 @@ public class Game implements GameStatus, GameWorld{
 	}
 
 	@Override
-	public void update() {
-		zombiesMan.addZombie();
-		contenedor.update();
-		
-		
-	}
-
-	@Override
 	public boolean execute(Command command) {
 		cycle++;
 		return command.execute(this).draw();
@@ -70,12 +62,12 @@ public class Game implements GameStatus, GameWorld{
 
 	@Override
 	public boolean isEmpty(int col, int row) {
-		return contenedor.isEmpty(col, row);
+		return container.isFullyOccupied(col, row);
 	}
 
 	@Override
-	public void addObj (GameObject obj) {
-		contenedor.addObject(obj);
+	public void addObj(GameObject obj) {
+		container.addObject(obj);
 	}
 	
 	@Override
@@ -100,7 +92,7 @@ public class Game implements GameStatus, GameWorld{
 	public void reset() {
 		this.suncoins=INITIAL_SUNCOINS;
 		this.cycle=0;
-		contenedor.reset();
+		container.reset();
 	}
 
 	@Override
@@ -126,7 +118,7 @@ public class Game implements GameStatus, GameWorld{
 	@Override
 	public String positionToString(int col, int row) {
 		
-		return contenedor.positionToString( col,row);
+		return container.positionToString(col,row);
 	}
 
 	@Override
@@ -141,7 +133,7 @@ public class Game implements GameStatus, GameWorld{
 
 	@Override
 	public GameObject isInPosition(int col, int row) {
-		return contenedor.isInPosition(col, row);
+		return container.isInPosition(col, row);
 	}
 
 	@Override
@@ -150,24 +142,17 @@ public class Game implements GameStatus, GameWorld{
 	}
 
 	@Override
-	public void eliminar(GameItem obj) {
-		contenedor.eliminar(obj);
-	}
-
-	@Override
-	public void aumentaNumOfZombies() {
-		contenedor.aumentaNumOfZombies();
-		
-	}
-
-	@Override
-	public void zombiesGanan() {
+	public void zombiesWin() {
 		this.theWinner=false;
 	}
 
 	@Override
-	public void jugadorGana() {
-		this.theWinner=true;
+	public boolean playerWin() {
+		if(zombiesMan.zombiesLoose()) {
+			this.theWinner=true;
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -177,6 +162,73 @@ public class Game implements GameStatus, GameWorld{
 
 	@Override
 	public void reduceZombie() {
-		zombiesMan.reduceZombie();
+		zombiesMan.reduceZombies();
 	}
+
+	@Override
+	public boolean catchSun(int col, int row) {
+		return container.catchSun(col, row);
+	}
+	
+	@Override
+	public void update() {
+		
+	    // 1. Execute pending actions
+			if(areTherePendingActions()) {
+				executePendingActions();
+			}
+			
+			// 2. Execute game Actions
+			
+			// 3. Game object updates
+			this.container.update();
+			// 4. & 5. Remove dead and execute pending actions
+			boolean deadRemoved = true;
+			while (deadRemoved || areTherePendingActions()) {
+				// 4. Remove dead
+				deadRemoved = container.removeDead();
+
+				// 5. execute pending actions
+				executePendingActions();
+			}
+
+			// 6. Notify commands that a new cycle started
+			Command.newCycle();
+	}
+
+	@Override
+	public void pushAction(GameAction gameAction) {
+	    this.actions.addLast(gameAction);
+	}
+
+	private void executePendingActions() {
+	   while (!this.actions.isEmpty()) {
+	      GameAction action = this.actions.removeLast();
+	      action.execute(this);
+	   }
+	}
+
+	private boolean areTherePendingActions() {
+	    return this.actions.size() > 0;
+	}
+
+	@Override
+	public void convertSun(int valueOfChange) {
+		suncoins+=valueOfChange;
+	}
+	
+	/**
+	 * Checks if a cell is fully occupied, that is, the position can be shared between an NPC (Plant, Zombie) and Suns .
+	 * 
+	 * @param col Column of the cell
+	 * @param row Row of the cell
+	 * 
+	 * @return <code>true</code> if the cell is fully occupied, <code>false</code>
+	 *         otherwise.
+	 */
+	@Override
+	public boolean isFullyOcuppied(int col, int row) {
+		return this.container.isFullyOccupied(col, row);
+	}
+	
 }

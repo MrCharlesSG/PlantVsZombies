@@ -1,7 +1,5 @@
 package tp1.p2.control.commands;
 
-import static tp1.p2.view.Messages.error;
-
 import tp1.p2.control.Command;
 import tp1.p2.control.ExecutionResult;
 import tp1.p2.logic.GameWorld;
@@ -50,13 +48,13 @@ public class AddPlantCommand extends Command implements Cloneable {
 
 	@Override
 	public ExecutionResult execute(GameWorld game) {
-		
 		Plant aux=PlantFactory.spawnPlant(plantName, game, col, row);
 		if(aux!= null) {
 			game.addObj(aux);
+			game.update();
+			return new ExecutionResult(true);
 		}
-		game.update();
-		return new ExecutionResult(true);
+		return new ExecutionResult(false);
 	}
 
 	@Override

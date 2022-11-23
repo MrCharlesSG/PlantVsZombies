@@ -34,7 +34,6 @@ public class GamePrinter {
 
 	public GamePrinter(GameStatus game) {
 		this.game = game;
-
 	}
 
 	/**
