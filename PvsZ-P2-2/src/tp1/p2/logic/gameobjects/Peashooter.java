@@ -17,6 +17,13 @@ public class Peashooter extends Plant {
     	this.damage=DANO;
     }
 
+	public Peashooter(GameWorld game, int col, int row) {
+		super(game, col, row);
+		this.lifes=INI_LIFES;
+    	this.coste=COSTE;
+    	this.damage=DANO;
+	}
+
 	@Override
 	protected String getSymbol() {
 		return Messages.PEASHOOTER_SYMBOL;
@@ -60,6 +67,11 @@ public class Peashooter extends Plant {
 				obj=game.getGameItemInPosition(i,row);
 			}
 		}
+	}
+
+	@Override
+	public GameObject create(GameWorld game, int col, int row) {
+		return new Peashooter(game, col, row);
 	}
 
 

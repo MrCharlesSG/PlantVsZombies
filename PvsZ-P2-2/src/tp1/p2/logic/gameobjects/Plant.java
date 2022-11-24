@@ -9,6 +9,10 @@ public abstract class Plant extends GameObject {
 		super();
 	}
 	
+	Plant(GameWorld game, int col,int  row){
+		super(game, col, row);
+	}
+	
 	@Override
 	public boolean receiveZombieAttack(int damage) {
 		lifes-=damage;
@@ -50,5 +54,10 @@ public abstract class Plant extends GameObject {
 	@Override
 	public int getCoste() {
 		return this.coste;
+	}
+	
+	@Override
+	public boolean plantExplosion() {
+		return true;
 	}
 }

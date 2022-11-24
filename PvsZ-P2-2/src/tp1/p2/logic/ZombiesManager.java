@@ -67,10 +67,10 @@ public class ZombiesManager {
 
 	public boolean addZombie(int row) {
 		boolean canAdd = this.remainingZombies > 0 && shouldAddZombie() && isPositionEmpty(GameWorld.NUM_COLS, row);
-		int zombieType = randomZombieType();
 
 		if (canAdd) {
-			Zombie zb=ZombieFactory.spawnZombie(row,GameWorld.NUM_COLS, game, zombieType);
+			int zombieType = randomZombieType();
+			game.addItem(ZombieFactory.spawnZombie(row,GameWorld.NUM_COLS, game, zombieType));	
 			this.remainingZombies--;
 			this.zombiesAlived++;
 			
@@ -85,7 +85,7 @@ public class ZombiesManager {
 
 	private boolean isPositionEmpty(int numCols, int row) {
 		
-		return game.isEmpty(numCols, row);
+		return !game.isFullyOcuppied(numCols, row);
 	}
 
 	public void reset(Level level, Random rand) {

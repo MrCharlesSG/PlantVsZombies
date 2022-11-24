@@ -1,5 +1,6 @@
 package tp1.p2.logic.gameobjects;
 
+import tp1.p2.logic.GameWorld;
 import tp1.p2.view.Messages;
 
 public class ZombieSporty extends Zombie{
@@ -12,7 +13,13 @@ public class ZombieSporty extends Zombie{
     	this.speed=SPEED;
     	this.lifes=INI_LIFES;
     }
-    
+
+	public ZombieSporty(GameWorld game, int col, int row) {
+		super(game, col, row);
+		this.speed=SPEED;
+    	this.lifes=INI_LIFES;
+	}
+
 	@Override
 	public int getIniLifes() {
 		return INI_LIFES;
@@ -28,4 +35,10 @@ public class ZombieSporty extends Zombie{
 		return Messages.SPORTY_ZOMBIE_NAME;
 	}
 
+
+
+	@Override
+	public GameObject create(GameWorld game, int col, int row) {
+		return new ZombieSporty(game, col, row);
+	}
 }

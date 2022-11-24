@@ -1,6 +1,7 @@
 package tp1.p2.logic.gameobjects;
 
 import tp1.p2.logic.GameItem;
+import tp1.p2.logic.GameWorld;
 import tp1.p2.view.Messages;
 
 public abstract class Zombie extends GameObject{
@@ -12,9 +13,23 @@ public abstract class Zombie extends GameObject{
 	
 	public Zombie() {
 		super();
+		this.defaultIni();
+	}
+
+	public Zombie(GameWorld game, int col, int row) {
+		super(game, col, row);
+		this.defaultIni();
+	}
+
+	private void defaultIni() {
 		this.lifes=INI_LIFES_DEFAULT;
 		this.damage=DANO_DEFAULT;
 		this.speed=SPEED_DEFAULT;
+	}
+	
+	@Override
+	public boolean plantExplosion() {
+		return false;
 	}
 	
 	@Override
@@ -31,8 +46,10 @@ public abstract class Zombie extends GameObject{
 	private void advance() {
 		if(this.cycles%this.speed==0 ) {
 			this.col--;
+			if(this.hasArrive()) {
+				game.zombiesWin();
+			}
 		}
-		cycles++;
 	}
 	
 	@Override
@@ -71,6 +88,7 @@ public abstract class Zombie extends GameObject{
 	@Override
 	public boolean receivePlantAttack(int damage) {
 		this.lifes-=damage;
+		game.playerWin();
 		return true;
 	}
 

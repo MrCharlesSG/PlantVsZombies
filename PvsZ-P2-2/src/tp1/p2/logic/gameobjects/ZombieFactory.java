@@ -20,15 +20,14 @@ public class ZombieFactory {
 		return Collections.unmodifiableList(AVAILABLE_ZOMBIES);
 	}
 
-	public static Zombie spawnZombie(int row,int col, GameWorld game, int zombieType) {
+	public static GameObject spawnZombie(int row,int col, GameWorld game, int zombieType) {
 
-		if(GameObject.posValida(col, row, GameWorld.NUM_COLS+1, GameWorld.NUM_ROWS)){
+		if(GameObject.posValida(col, row, GameWorld.NUM_COLS, GameWorld.NUM_ROWS)){
 			col++;
-			if(game.isEmpty(col, row)) {
-				Zombie zb=AVAILABLE_ZOMBIES.get(zombieType);
-				zb.create(game, col, row);
-				return zb;
-			}
+			
+			GameObject zb=AVAILABLE_ZOMBIES.get(zombieType).create(game, col, row);
+			return zb;
+			
 		}
 		return null;
 	}

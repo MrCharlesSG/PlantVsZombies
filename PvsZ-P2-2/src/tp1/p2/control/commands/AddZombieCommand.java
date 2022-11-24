@@ -5,7 +5,7 @@ import static tp1.p2.view.Messages.error;
 import tp1.p2.control.Command;
 import tp1.p2.control.ExecutionResult;
 import tp1.p2.logic.GameWorld;
-import tp1.p2.logic.gameobjects.Zombie;
+import tp1.p2.logic.gameobjects.GameObject;
 import tp1.p2.logic.gameobjects.ZombieFactory;
 import tp1.p2.view.Messages;
 
@@ -49,7 +49,7 @@ public class AddZombieCommand extends Command {
 
 	@Override
 	public ExecutionResult execute(GameWorld game) {
-		Zombie aux= ZombieFactory.spawnZombie(row,col, game, zombieIdx);
+		GameObject aux= ZombieFactory.spawnZombie(row,col, game, zombieIdx);
 		if(aux!=null) {
 			game.addItem(aux);
 			game.update();
@@ -61,9 +61,9 @@ public class AddZombieCommand extends Command {
 	@Override
 	public Command create(String[] parameters) {
 		if(parameters.length==4) {
-			this.row=stringToInt(parameters[3]);
-			this.col=stringToInt(parameters[2]);
-			this.zombieIdx=stringToInt(parameters[1]);
+			this.row=Integer.parseInt(parameters[3]);
+			this.col=Integer.parseInt(parameters[2]);
+			this.zombieIdx=Integer.parseInt(parameters[1]);
 			return this;
 		}
 		return null;

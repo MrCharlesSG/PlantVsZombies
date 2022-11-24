@@ -80,6 +80,7 @@ public class Controller {
 					refreshDisplay = game.execute(command);
 				} else {
 					refreshDisplay = false;
+					printErrorMessage();
 				}
 			}
 		}
@@ -89,6 +90,14 @@ public class Controller {
 		}
 
 		printEndMessage();
+	}
+
+	private void printErrorMessage() {
+		System.out.println(errorMessage());
+	}
+	
+	private String errorMessage() {
+		return String.format(Messages.ERROR, Messages.INVALID_COMMAND);
 	}
 
 }

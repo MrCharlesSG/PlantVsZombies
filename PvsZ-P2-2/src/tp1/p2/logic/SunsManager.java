@@ -45,6 +45,6 @@ public class SunsManager {
 	public void addSun() {
 		int col = getRandomInt(GameWorld.NUM_COLS);
 		int row = getRandomInt(GameWorld.NUM_ROWS);
-		game.addItem(new Sun(this.game, col, row));
+		game.addItem(new Sun(game, col, row));
 	}
 }

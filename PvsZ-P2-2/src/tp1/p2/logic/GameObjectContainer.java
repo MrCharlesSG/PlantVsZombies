@@ -34,22 +34,27 @@ public class GameObjectContainer {
 	public void reset() {
 		gameObjects.clear();
 	}
-
+	
 	public String positionToString(int col, int row) {
-		StringBuilder buffer=null;
-		int i=0, size=gameObjects.size(), cont=0;
-		while(i<size && cont<2) {
-			if(gameObjects.get(i).isInPosition(col, row)) {
-				if(buffer==null) {
-					buffer=new StringBuilder();
+		StringBuilder buffer = new StringBuilder();
+		boolean sunPainted = false;
+		boolean sunAboutToPaint = false;
+
+		for (GameObject g : gameObjects) {
+			if(g.isAlive() && g.getCol() == col && g.getRow() == row) {
+				String objectText = g.toString();
+				sunAboutToPaint = objectText.indexOf(Messages.SUN_SYMBOL) >= 0;
+				if (sunAboutToPaint) {
+					if (!sunPainted) {
+						buffer.append(objectText);
+						sunPainted = true;
+					}
+				} else {
+					buffer.append(objectText);
 				}
-				buffer.append(gameObjects.get(i).toString());
-				cont++;
 			}
 		}
-		if(buffer==null) {
-			return Messages.NOTHING_ICON;
-		}
+
 		return buffer.toString();
 	}
 	
@@ -74,24 +79,26 @@ public class GameObjectContainer {
 	}
 
 	public boolean catchSun(int col, int row) {
-		int i=0, size=gameObjects.size();
+		int i=0;
+		boolean cogido=false;
 		GameObject aux;
-		while (i<size) {
+		while (i<gameObjects.size()) {
 			aux=gameObjects.get(i);
 			if(aux.isInPosition(col, row)) {
 				if(aux.catchSun()) {
 					gameObjects.remove(i);
-					return true;
+					cogido=true;
 				}
 			}
+			i++;
 		}
-		return false;
+		return cogido;
 	}
 
 	public boolean removeDead() {
 		boolean result=false;
-		int i=0;
-		for(GameObject obj: gameObjects) {
+		for(int i=0;i< gameObjects.size(); i++) {
+			GameObject obj= gameObjects.get(i);
 			if(!obj.isAlive()) {
 				obj.onExit();
 				gameObjects.remove(i);
@@ -109,6 +116,7 @@ public class GameObjectContainer {
 			GameObject g = gameObjects.get(i);
 			if(g.isAlive()) {
 				g.update();
+				g.addCycle();
 			}
 		}
 	}

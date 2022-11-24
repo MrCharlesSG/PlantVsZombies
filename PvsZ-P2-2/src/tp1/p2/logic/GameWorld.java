@@ -20,8 +20,6 @@ public interface GameWorld {
     void update();
     
     boolean execute(Command command);
-
-	boolean isEmpty(int col, int row);
 	
 	void addItem(GameObject obj);
 	
@@ -33,7 +31,7 @@ public interface GameWorld {
 	
 	GameObject isInPosition(int col, int row);
 		
-	void GeneraSunCoins(int numSunCoins);
+	void generaSunCoins();
 	
 	void reduceZombie();
 

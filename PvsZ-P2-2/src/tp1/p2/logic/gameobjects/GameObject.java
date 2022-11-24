@@ -28,13 +28,18 @@ public abstract class GameObject implements GameItem {
 	protected int damage;
 	
 	GameObject() {
-		this.cycles=game.getCycle();
+		this.cycles=0;
 		this.coste=0;
 		this.damage=0;
 	}
 
 	GameObject(GameWorld game, int col, int row) {
-		this.create(game, col, row);
+		this.game=game;
+		this.col=col;
+		this.row=row;
+		this.cycles=0;
+		this.coste=0;
+		this.damage=0;
 	}
 
 	public boolean isInPosition(int col, int row) {
@@ -84,11 +89,7 @@ public abstract class GameObject implements GameItem {
 	abstract public void onExit();
 	
 	
-	public void create(GameWorld game, int col, int row) {
-		this.game=game;
-		this.col=col;
-		this.row=row;
-	}
+	abstract public GameObject create(GameWorld game, int col, int row);
 
 	public abstract boolean hasArrive();
 
@@ -96,6 +97,10 @@ public abstract class GameObject implements GameItem {
 
 	public boolean fillPosition() {
 		return true;
+	}
+
+	public void addCycle() {
+		this.cycles++;
 	}
 
 

@@ -85,6 +85,13 @@ public abstract class Command {
 
 	abstract public String getHelp();
 
+	public String helpMessage() {
+		StringBuilder buffer=new StringBuilder(this.getDetails());
+		buffer.append(" || ");
+		buffer.append(this.getHelp());
+		return buffer.toString();
+	}
+	
 	public boolean isDefaultCommand() {
 		return Command.defaultCommand == this;
 	}
@@ -117,10 +124,10 @@ public abstract class Command {
 	 * Notifies the {@link Command} that a new cycle has started.
 	 */
 	protected void newCycleStarted() {
+		
 	}
 	
-	protected int stringToInt(String str){//transforma a int los strings. Se uriliza en add planta
-		int ret=Integer.parseInt(str);
-		return ret;
+	protected boolean isNumeric(String str) {
+		return  str!= null && str.matches("[0-9.]+");
 	}
 }

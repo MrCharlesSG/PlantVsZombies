@@ -1,5 +1,6 @@
 package tp1.p2.logic.gameobjects;
 
+import tp1.p2.logic.GameWorld;
 import tp1.p2.view.Messages;
 
 public class ZombieBucketHead extends Zombie{
@@ -16,6 +17,11 @@ public class ZombieBucketHead extends Zombie{
 		}
 	
 	
+	public ZombieBucketHead(GameWorld game, int col, int row) {
+		super(game, col, row);
+	}
+
+
 	@Override
 	public boolean receiveZombieAttack(int damage) {
 		return false;
@@ -40,5 +46,11 @@ public class ZombieBucketHead extends Zombie{
 	@Override
 	public int getIniLifes() {
 		return INI_LIFES;
+	}
+
+
+	@Override
+	public GameObject create(GameWorld game, int col, int row) {
+		return new ZombieBucketHead(game, col, row);
 	}	
 }

@@ -11,7 +11,9 @@ public class PlantFactory {
 	/* @formatter:off */
 	private static final List<Plant> AVAILABLE_PLANTS = Arrays.asList(
 		new Sunflower(),
-		new Peashooter()
+		new Peashooter(),
+		new WallNut(),
+		new CherryBomb()
 	);
 	/* @formatter:on */
 
@@ -25,14 +27,13 @@ public class PlantFactory {
 		return false;
 	}
 
-	public static Plant spawnPlant(String plantName, GameWorld game, int col, int row, boolean consumeCoins) {
+	public static GameObject spawnPlant(String plantName, GameWorld game, int col, int row, boolean consumeCoins) {
 		if(GameObject.posValida(col, row, GameWorld.NUM_COLS, GameWorld.NUM_ROWS)){
-			if(game.isEmpty(col, row)) {
+			if(!game.isFullyOcuppied(col, row)) {
 				for(Plant p: AVAILABLE_PLANTS) {
 					if(p.getName().toLowerCase().equals(plantName)|| p.getSymbol().toLowerCase().equals(plantName)) {
 						if(game.esSuficiente(p.getCoste())|| !consumeCoins) {
-							p.create(game, col, row);
-							return p;		
+							return p.create(game, col, row);	
 						}
 					}
 				}
