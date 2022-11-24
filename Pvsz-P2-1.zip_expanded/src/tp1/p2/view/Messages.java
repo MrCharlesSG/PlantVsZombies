@@ -78,15 +78,15 @@ public class Messages {
 
 	public static final String AVAILABLE_ZOMBIES = "Available zombies:";
 
-	public static final String UNEXPECTED_RUNTIME_ERROR = "Oops!";
+	public static final String UNEXPECTED_RUNTIME_ERROR = "Oops!, ಠ_ಠ";
+	
+	public static final String NOTHING_ICON= "              ";
 
 	//
 	// Game Objects
 	//
 
 	public static final String GAME_OBJECT_STATUS = "%2s[%02d]";
-	
-	public static final String NOTHING_ICON= "        ";
 
 	public static final String PLANT_DESCRIPTION = "%s: cost='%d' suncoins, damage='%d', endurance='%d'";
 

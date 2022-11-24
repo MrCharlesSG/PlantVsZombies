@@ -18,6 +18,7 @@ public class SunsManager {
 		this.game = game;
 		this.rand = rand;
 		this.cooldown = COOLDOWN_RANDOM_SUN;
+		// TODO add your code here
 	}
 
 	public int getCatchedSuns() {
@@ -44,6 +45,6 @@ public class SunsManager {
 	public void addSun() {
 		int col = getRandomInt(GameWorld.NUM_COLS);
 		int row = getRandomInt(GameWorld.NUM_ROWS);
-		game.addObj(new Sun(this.game, col, row));
+		game.addItem(new Sun(game, col, row));
 	}
 }

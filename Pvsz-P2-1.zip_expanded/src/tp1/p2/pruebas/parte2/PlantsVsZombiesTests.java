@@ -1,6 +1,6 @@
 package tp1.p2.pruebas.parte2;
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -12,7 +12,7 @@ import java.io.PrintStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import tp1.p2.PlantsVsZombies;
 
@@ -97,6 +97,18 @@ public class PlantsVsZombiesTests {
 	public void test04() {
 		parameterizedTest(Paths.get("test/p22/04-insane_360-input.txt"), Paths.get("test/p22/04-insane_360-expected.txt"),
 				Paths.get("test/p22/04-insane_360-output.txt"), new String[] { "INSANE", "360" });
+	}
+
+	@Test
+	public void test05() {
+		parameterizedTest(Paths.get("test/p22/05-easy_123-input.txt"), Paths.get("test/p22/05-easy_123-expected.txt"),
+				Paths.get("test/p22/05-easy_123-output.txt"), new String[] { "EASY", "123" });
+	}
+
+	@Test
+	public void test06() {
+		parameterizedTest(Paths.get("test/p22/06-easy_123-input.txt"), Paths.get("test/p22/06-easy_123-expected.txt"),
+				Paths.get("test/p22/06-easy_123-output.txt"), new String[] { "EASY", "123" });
 	}
 
 }

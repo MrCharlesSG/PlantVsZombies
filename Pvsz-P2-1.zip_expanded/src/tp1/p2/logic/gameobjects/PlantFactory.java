@@ -23,17 +23,22 @@ public class PlantFactory {
 				return true;
 			}
 		}
+
 		return false;
 	}
 
-	public static Plant spawnPlant(String plantName, GameWorld game, int col, int row) {
+	public static GameObject spawnPlant(String plantName, GameWorld game, int col, int row, boolean consumeCoins) {
 		if(GameObject.posValida(col, row, GameWorld.NUM_COLS, GameWorld.NUM_ROWS)){
-			if(game.isEmpty(col, row)) {
+			if(!game.isFullyOcuppied(col, row)) {
 				for(Plant p: AVAILABLE_PLANTS) {
-					if(p.getName().toLowerCase().equals(plantName)|| p.getSymbol().toLowerCase().equals(plantName)) {
-						if(game.esSuficiente(p.getCoste())) {
-							p.create(game, col, row);
-							return p;		
+					if(p.getName().toLowerCase().equals(plantName) || p.getSymbol().toLowerCase().equals(plantName)) {
+						if(!consumeCoins) {
+							return p.create(game, col, row);	
+						}
+						else {
+							if(game.esSuficiente(p.getCoste())) {
+								return p.create(game,col,row);
+							}
 						}
 					}
 				}

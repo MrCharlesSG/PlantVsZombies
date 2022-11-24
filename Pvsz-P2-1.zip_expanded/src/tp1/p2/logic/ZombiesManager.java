@@ -24,8 +24,6 @@ public class ZombiesManager {
 	
 	private int zombiesAlived;
 	
-	private ZombieFactory factoria;
-
 	public ZombiesManager(GameWorld game, Level level, Random rand) {
 		this.game = game;
 		this.level = level;
@@ -69,14 +67,12 @@ public class ZombiesManager {
 
 	public boolean addZombie(int row) {
 		boolean canAdd = this.remainingZombies > 0 && shouldAddZombie() && isPositionEmpty(GameWorld.NUM_COLS, row);
-		int zombieType = randomZombieType();
 
 		if (canAdd) {
-			Zombie zb=factoria.spawnZombie(row, game, zombieType);
-			game.addObj(zb);
-			zombiesAlived++;
-			remainingZombies--;
-			
+			int zombieType = randomZombieType();
+			game.addItem(ZombieFactory.spawnZombie(row,GameWorld.NUM_COLS, game, zombieType));	
+			this.remainingZombies--;
+			this.zombiesAlived++;
 		}
 		return canAdd;
 	}
@@ -87,7 +83,7 @@ public class ZombiesManager {
 
 	private boolean isPositionEmpty(int numCols, int row) {
 		
-		return game.isEmpty(numCols, row);
+		return !game.isFullyOcuppied(numCols, row);
 	}
 
 	public void reset(Level level, Random rand) {
@@ -97,17 +93,15 @@ public class ZombiesManager {
 		this.zombiesAlived = 0;
 	}
 
-	public void reduceZombies() {
-		zombiesAlived--;
-	}
-	
 	public boolean zombiesLoose() {
 		if(this.remainingZombies==0 && this.zombiesAlived==0) {
 			return true;
 		}
 		return false;
 	}
-
-	// TODO add your code here
+	
+	public void reduceZombies() {
+		zombiesAlived--;
+	}
 
 }

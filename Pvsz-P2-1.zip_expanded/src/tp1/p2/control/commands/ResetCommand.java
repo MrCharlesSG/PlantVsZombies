@@ -51,7 +51,7 @@ public class ResetCommand extends Command {
 		}else {
 			game.reset(level, seed);
 		}
-		return new ExecutionResult(false);
+		return new ExecutionResult(true);
 	}
 
 	@Override

@@ -1,11 +1,16 @@
 package tp1.p2.logic.gameobjects;
 
+import tp1.p2.logic.GameWorld;
 import tp1.p2.view.Messages;
 
 public abstract class Plant extends GameObject {
 	
 	Plant(){
 		super();
+	}
+	
+	Plant(GameWorld game, int col,int  row){
+		super(game, col, row);
 	}
 	
 	@Override
@@ -19,26 +24,36 @@ public abstract class Plant extends GameObject {
 		return false;
 	}
 	
-	abstract protected String getSymbol();
-
 	@Override
 	public String getDescription() {
 		return String.format(Messages.PLANT_DESCRIPTION,getShortcut(), this.coste, this.damage, getIniLifes());
 	}
 	
-	abstract public int getCoste();
-	@Override
-	public void onEnter() {}
-	@Override
-	public void onExit() {}
-
-	public boolean haLlegado() {
-		return false;
-	}
-	
-	abstract public String getName();
-	
 	abstract protected String getShortcut();
 	
 	abstract int getIniLifes();
+	
+	@Override
+	public void onExit() {
+		
+	}
+
+	@Override
+	public void onEnter() {
+		
+	}
+	
+	public boolean hasArrive() {
+		return false;
+	}
+	
+	public boolean catchSun() {
+		return false;
+	}
+	
+	@Override
+	public int getCoste() {
+		return this.coste;
+	}
+	
 }

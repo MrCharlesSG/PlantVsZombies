@@ -4,14 +4,14 @@ import tp1.p2.logic.GameWorld;
 import tp1.p2.view.Messages;
 
 public class Sun extends GameObject {
-
-    public static int generatedSuns=0;
+	
+	public static int generatedSuns=0;
 	
 	public static int catchedSuns=0;
 	
 	public final static int VALUE_OF_CHANGE=10;
 
-	public final static int TIME_ALIVE=10;
+	public final static int TIME_ALIVE=10+1;
 	
 	public Sun(GameWorld game, int col, int row) {
 		this.game=game;
@@ -42,7 +42,7 @@ public class Sun extends GameObject {
 
 	@Override
 	public String getDescription() {
-		return Messages.SUN_DESCRIPTION;
+		return null;
 	}
 
 	@Override
@@ -57,28 +57,32 @@ public class Sun extends GameObject {
 
 	@Override
 	public void onExit() {
+		catchedSuns++;
 	}
 
 	@Override
-	public boolean haLlegado() {
+	public boolean hasArrive() {
 		return false;
 	}
 	
 	public boolean catchSun() {
 		game.convertSun(VALUE_OF_CHANGE);
-		catchedSuns++;
 		return true;
 	}
 
 	@Override
 	public String getName() {
-		return null;
+		return Messages.SUN_DESCRIPTION;
 	}
 	
 	@Override
 	public boolean fillPosition() {
 		return false;
 	}
-		
-}
+	
+	@Override
+	public GameObject create(GameWorld game, int col, int row) {
+		return null;
+	}
 
+}

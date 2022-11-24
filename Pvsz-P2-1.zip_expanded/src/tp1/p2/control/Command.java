@@ -17,7 +17,6 @@ import tp1.p2.control.commands.ListZombiesCommand;
 import tp1.p2.control.commands.NoneCommand;
 import tp1.p2.control.commands.ResetCommand;
 import tp1.p2.logic.GameWorld;
-import tp1.p2.logic.actions.GameAction;
 import tp1.p2.view.Messages;
 
 /**
@@ -42,15 +41,6 @@ public abstract class Command {
 	/* @formatter:on */
 
 	private static Command defaultCommand;
-	
-	public Command() {
-		this(false);
-	}
-	
-	public Command(boolean b) {
-		if(b)
-			defaultCommand=this;
-	}
 
 	public static Command parse(String[] commandWords) {
 		//return none
@@ -71,6 +61,22 @@ public abstract class Command {
 		return Collections.unmodifiableList(AVAILABLE_COMMANDS);
 	}
 
+	public static void newCycle() {
+		for(Command c : AVAILABLE_COMMANDS) {
+			c.newCycleStarted();
+		}
+	}
+
+	public Command() {
+		this(false);
+	}
+
+	public Command(boolean isDefault) {
+		if (isDefault) {
+			// TODO add your code here
+		}
+	}
+
 	abstract protected String getName();
 
 	abstract protected String getShortcut();
@@ -79,7 +85,14 @@ public abstract class Command {
 
 	abstract public String getHelp();
 
-	public boolean isDefaultAction() {
+	public String helpMessage() {
+		StringBuilder buffer=new StringBuilder(this.getDetails());
+		buffer.append(" || ");
+		buffer.append(this.getHelp());
+		return buffer.toString();
+	}
+	
+	public boolean isDefaultCommand() {
 		return Command.defaultCommand == this;
 	}
 
@@ -87,7 +100,7 @@ public abstract class Command {
 		String shortcut = getShortcut();
 		String name = getName();
 		return shortcut.equalsIgnoreCase(token) || name.equalsIgnoreCase(token)
-				|| (isDefaultAction() && "".equals(token));
+				|| (isDefaultCommand() && "".equals(token));
 	}
 
 	/**
@@ -99,21 +112,22 @@ public abstract class Command {
 	 */
 	public abstract ExecutionResult execute(GameWorld game);
 
-	public abstract Command create(String[] parameters) ;
-	
-	protected int stringToInt(String str){//transforma a int los strings. Se uriliza en add planta
-		int ret=Integer.parseInt(str);
-		return ret;
+	public Command create(String[] parameters) {
+		if (parameters.length != 0) {
+			System.out.println(error(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER));
+			return null;
+		}
+		return this;
 	}
 
-	public static void newCycle() {
-		for(Command c : AVAILABLE_COMMANDS) {
-			c.newCycleStarted();
-		}
-	}
-	
+	/**
+	 * Notifies the {@link Command} that a new cycle has started.
+	 */
 	protected void newCycleStarted() {
 		
 	}
 	
+	protected boolean isNumeric(String str) {
+		return  str!= null && str.matches("[0-9.]+");
+	}
 }

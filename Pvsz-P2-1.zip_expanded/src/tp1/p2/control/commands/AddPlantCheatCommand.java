@@ -19,7 +19,7 @@ public class AddPlantCheatCommand extends Command {
 
 	@Override
 	public String getDetails() {
-		return Messages.COMMAND_CHEAT_PLANT_DETAILS + Messages.HELP_DETAILS_COMMAND_HELP_SEPARATOR;
+		return Messages.COMMAND_CHEAT_PLANT_DETAILS;
 	}
 
 	@Override

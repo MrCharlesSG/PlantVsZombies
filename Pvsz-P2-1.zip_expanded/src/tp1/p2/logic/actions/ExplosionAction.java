@@ -2,10 +2,12 @@ package tp1.p2.logic.actions;
 
 import tp1.p2.logic.GameItem;
 import tp1.p2.logic.GameWorld;
-import tp1.p2.logic.gameobjects.GameObject;
-import tp1.p2.logic.gameobjects.Zombie;
 
 public class ExplosionAction implements GameAction {
+
+	public class execute {
+
+	}
 
 	private int col;
 
@@ -13,21 +15,30 @@ public class ExplosionAction implements GameAction {
 
 	private int damage;
 
-	public ExplosionAction(int col, int row, int damage) {
+	private boolean plantExplosion;
+	
+	public ExplosionAction(int col, int row, int damage, boolean plantExplosion) {
 		this.col = col;
 		this.row = row;
 		this.damage = damage;
+		this.plantExplosion = plantExplosion;
 	}
 
 	@Override
 	public void execute(GameWorld game) {
-		for(int i=this.col-1;i<=this.col+1;i++) {
-			for(int j=this.row-1;j<=this.row+1;j++) {
-				GameItem obj = game.getGameItemInPosition(i, j);
-				if(!obj.receivePlantAttack(damage)) {
-					obj.receiveZombieAttack(damage);
+		for(int col=this.col-1; col <= this.col+1; col++) {
+			for(int row=this.row-1; row<=this.row+1; row++) {
+				GameItem o = game.getGameItemInPosition(col, row);
+				if(o!=null) {
+					if(!plantExplosion) {
+						o.receiveZombieAttack(damage);
+					}else {
+						o.receivePlantAttack(damage);
+					}
+
 				}
 			}
 		}
 	}
+
 }
