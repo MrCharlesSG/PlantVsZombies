@@ -6,8 +6,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import tp1.p2.control.commands.AddPlantCheatCommand;
 import tp1.p2.control.commands.AddPlantCommand;
 import tp1.p2.control.commands.AddZombieCommand;
+import tp1.p2.control.commands.CatchCommand;
 import tp1.p2.control.commands.ExitCommand;
 import tp1.p2.control.commands.HelpCommand;
 import tp1.p2.control.commands.ListPlantsCommand;
@@ -15,6 +17,7 @@ import tp1.p2.control.commands.ListZombiesCommand;
 import tp1.p2.control.commands.NoneCommand;
 import tp1.p2.control.commands.ResetCommand;
 import tp1.p2.logic.GameWorld;
+import tp1.p2.logic.actions.GameAction;
 import tp1.p2.view.Messages;
 
 /**
@@ -26,13 +29,15 @@ public abstract class Command {
 	/* @formatter:off */
 	private static final List<Command> AVAILABLE_COMMANDS = Arrays.asList(
 		new AddPlantCommand(),
-		new AddZombieCommand(),
-		new ListZombiesCommand(),
 		new ListPlantsCommand(),
 		new ResetCommand(),
 		new HelpCommand(),
 		new ExitCommand(),
-		new NoneCommand()
+		new NoneCommand(),
+		new ListZombiesCommand(),
+		new AddZombieCommand(),
+		new AddPlantCheatCommand(),
+		new CatchCommand()
 	);
 	/* @formatter:on */
 
@@ -45,7 +50,6 @@ public abstract class Command {
 	public Command(boolean b) {
 		if(b)
 			defaultCommand=this;
-		// TODO Auto-generated constructor stub
 	}
 
 	public static Command parse(String[] commandWords) {
@@ -102,4 +106,14 @@ public abstract class Command {
 		return ret;
 	}
 
+	public static void newCycle() {
+		for(Command c : AVAILABLE_COMMANDS) {
+			c.newCycleStarted();
+		}
+	}
+	
+	protected void newCycleStarted() {
+		
+	}
+	
 }

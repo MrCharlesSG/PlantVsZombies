@@ -15,7 +15,7 @@ import tp1.p2.view.Messages;
 public class Controller {
 
 	private Game game;
-
+	
 	private Scanner scanner;
 
 	private GamePrinter gamePrinter;
@@ -78,6 +78,7 @@ public class Controller {
 				if (command != null) {
 					// 3-4. Game Action & Update
 					refreshDisplay = game.execute(command);
+				
 				} else {
 					refreshDisplay = false;
 				}

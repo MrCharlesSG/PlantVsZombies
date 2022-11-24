@@ -81,11 +81,11 @@ public class GameObjectContainer {
 	
 	public boolean finishedGame(int remainigZombies, GameWorld game) {
 		if(zombiesLlegan(game)) {
-			game.zombiesGanan();
+			game.zombiesWin();
 			return true;
 		}
 		if(remainigZombies==0 && numOfZombies==0) {
-			game.jugadorGana();
+			game.zombiesWin();
 			return true;
 		}
 		return false;
@@ -102,5 +102,47 @@ public class GameObjectContainer {
 
 	public void aumentaNumOfZombies() {
 		numOfZombies++;
+	}
+
+	public boolean isFullyOccupied(int col, int row) {
+		int i = 0;
+		boolean FullyOccupied = false;
+		while(i<gameObjects.size()&&!FullyOccupied) {
+			GameObject obj = gameObjects.get(i);
+			if(obj.fillPosition()) {
+				FullyOccupied = true;
+			}
+		}
+		return FullyOccupied;
+	}
+	
+	public boolean catchSun(int col, int row) {
+		int i=0, size=gameObjects.size();
+		GameObject aux;
+		while (i<size) {
+			aux=gameObjects.get(i);
+			if(aux.isInPosition(col, row)) {
+				if(aux.catchSun()) {
+					gameObjects.remove(i);
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	public boolean removeDead() {
+		boolean result=false;
+		int i=0;
+		for(GameObject obj: gameObjects) {
+			if(!obj.isAlive()) {
+				obj.onExit();
+				gameObjects.remove(i);
+				
+				result=true;
+			}	
+			i++;
+		}
+		return result;
 	}
 }

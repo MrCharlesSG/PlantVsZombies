@@ -20,4 +20,6 @@ public interface GameItem {
 
 	boolean isAlive();
 	
+	boolean fillPosition();
+	
 }

@@ -3,6 +3,8 @@ package tp1.p2.logic;
 import tp1.p2.control.Command;
 import tp1.p2.control.ExecutionResult;
 import tp1.p2.control.Level;
+import tp1.p2.logic.actions.ExplosionAction;
+import tp1.p2.logic.actions.GameAction;
 import tp1.p2.logic.gameobjects.GameObject;
 import tp1.p2.logic.gameobjects.Peashooter;
 
@@ -11,7 +13,6 @@ public interface GameWorld {
 	public static final int NUM_ROWS = 4;
 
 	public static final int NUM_COLS = 8;
-
 
     void playerQuits();
 
@@ -32,18 +33,23 @@ public interface GameWorld {
 	GameObject isInPosition(int col, int row);
 		
 	void GeneraSunCoins(int numSunCoins);
-
-	void eliminar(GameItem obj);
 	
-	void aumentaNumOfZombies();
+	void reduceZombie();
 
-	void zombiesGanan();
+	void zombiesWin();
 
-	void jugadorGana();
+	boolean playerWin();
 
 	GameItem getGameItemInPosition(int col, int row);
 	
 	public int getCycle();
 
-	void reduceZombie();
+	boolean catchSun(int col, int row);
+
+	void convertSun(int valueOfChange);
+
+	void pushAction(GameAction gameAction);
+	
+	boolean isFullyOcuppied(int col, int row);
+
 }

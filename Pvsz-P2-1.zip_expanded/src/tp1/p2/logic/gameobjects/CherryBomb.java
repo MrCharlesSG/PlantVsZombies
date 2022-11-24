@@ -1,13 +1,11 @@
 package tp1.p2.logic.gameobjects;
 
-import tp1.p2.logic.GameItem;
-import tp1.p2.logic.GameWorld;
 import tp1.p2.logic.actions.ExplosionAction;
 import tp1.p2.view.Messages;
 
 public class CherryBomb extends Plant {
 	
-	public final int COSTE=50;
+	public static final int COSTE=50;
 	public static final int DANO=10;
     public static final int INI_LIFES=2;
     public static final int TIME_TO_EXPLODE=2;
@@ -25,45 +23,36 @@ public class CherryBomb extends Plant {
 	}
 
 	@Override
-	public String getDescription() {
-		String icon=String.format(Messages.PLANT_DESCRIPTION,getName(), COSTE, DANO, INI_LIFES);
-		return icon;
-	}	
-	
-	@Override
-	public boolean receiveZombieAttack(int damage) {
-		this.lifes-=damage;
-		return true;
-	}
-	
-	@Override
 	public int getCoste() {
-		return this.COSTE;
+		return COSTE;
 	}
 
 	@Override
-	public String getName() {
+	public String getShortcut() {
 		return Messages.CHERRY_BOMB_NAME_SHORTCUT;
 	}
-
+	
 	@Override
-	public void onEnter() {
-		
+	public String getName() {
+		return Messages.CHERRY_BOMB_NAME;
 	}
 	
 	@Override
 	public void update() {
-		if(isAlive()) {
-			if(this.cycles%TIME_TO_EXPLODE==0) {
-				onExit();
-			}
+		if(this.cycles==2) {
+			game.pushAction(new ExplosionAction(col,row, damage));
+			this.lifes=0;
 		}
-		cycles++;
 	}
 	
 	@Override
 	public void onExit() {
 		new ExplosionAction(row,col,damage).execute(game);
+	}
+
+	@Override
+	int getIniLifes() {
+		return INI_LIFES;
 	}
 
 

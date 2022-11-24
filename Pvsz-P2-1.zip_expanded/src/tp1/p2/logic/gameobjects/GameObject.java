@@ -29,11 +29,14 @@ public abstract class GameObject implements GameItem {
 	
 	protected int numSolesGenera;
 	
+	protected int speed;
+	
 	GameObject() {
 		this.cycles=0;
 		this.coste=0;
 		this.numSolesGenera=0;
 		this.damage=0;
+		this.speed=0;
 	}
 
 	GameObject(GameWorld game, int col, int row) {
@@ -82,6 +85,10 @@ public abstract class GameObject implements GameItem {
 	
 	abstract public void onExit();
 	
+	@Override
+	public boolean fillPosition() {
+		return true;
+	}
 	
 	public void create(GameWorld game, int col, int row) {
 		this.game=game;
@@ -90,4 +97,8 @@ public abstract class GameObject implements GameItem {
 	}
 	
 	public abstract boolean haLlegado();
+	
+	public boolean catchSun() {
+		return false;
+	}
 }

@@ -97,8 +97,15 @@ public class ZombiesManager {
 		this.zombiesAlived = 0;
 	}
 
-	public void reduceZombie() {
+	public void reduceZombies() {
 		zombiesAlived--;
+	}
+	
+	public boolean zombiesLoose() {
+		if(this.remainingZombies==0 && this.zombiesAlived==0) {
+			return true;
+		}
+		return false;
 	}
 
 	// TODO add your code here
