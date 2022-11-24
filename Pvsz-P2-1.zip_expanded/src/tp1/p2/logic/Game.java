@@ -197,7 +197,7 @@ public class Game implements GameStatus, GameWorld{
 			while (deadRemoved || areTherePendingActions()) {
 				// 4. Remove dead
 				deadRemoved = container.removeDead();
-
+				
 				// 5. execute pending actions
 				executePendingActions();
 			}

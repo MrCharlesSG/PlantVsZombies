@@ -49,11 +49,6 @@ public class CherryBomb extends Plant {
 			this.lifes=0;
 		}
 	}
-
-	@Override
-	public void onExit() {
-		
-	}
 	
 	@Override
 	int getIniLifes() {
@@ -65,7 +60,5 @@ public class CherryBomb extends Plant {
 		GameObject obj=new CherryBomb(game, col, row);
 		return obj;
 	}
-
-
 
 }

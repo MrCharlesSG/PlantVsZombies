@@ -100,5 +100,4 @@ public abstract class GameObject implements GameItem {
 		this.cycles++;
 	}
 
-
 }

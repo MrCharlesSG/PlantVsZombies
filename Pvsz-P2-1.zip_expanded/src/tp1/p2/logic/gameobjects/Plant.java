@@ -55,5 +55,5 @@ public abstract class Plant extends GameObject {
 	public int getCoste() {
 		return this.coste;
 	}
-	
+
 }
