@@ -14,11 +14,14 @@ public class ExplosionAction implements GameAction {
 	private int row;
 
 	private int damage;
+	
+	private boolean plantExplosion;
 
-	public ExplosionAction(int col, int row, int damage) {
+	public ExplosionAction(int col, int row, int damage, boolean plantExplosion) {
 		this.col = col;
 		this.row = row;
 		this.damage = damage;
+		this.plantExplosion=plantExplosion;
 	}
 
 	@Override
@@ -27,7 +30,7 @@ public class ExplosionAction implements GameAction {
 			for(int row=this.row-1; row<=this.row+1; row++) {
 				GameItem o = game.getGameItemInPosition(col, row);
 				if(o!=null) {
-					if(o.plantExplosion()) {
+					if(!plantExplosion) {
 						o.receiveZombieAttack(damage);
 					}else {
 						o.receivePlantAttack(damage);

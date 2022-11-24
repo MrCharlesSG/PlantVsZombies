@@ -81,11 +81,6 @@ public class Sun extends GameObject {
 	}
 	
 	@Override
-	public boolean plantExplosion() {
-		return false;
-	}
-
-	@Override
 	public GameObject create(GameWorld game, int col, int row) {
 		// TODO Auto-generated method stub
 		return null;

@@ -105,7 +105,6 @@ public class GameObjectContainer {
 				
 				result=true;
 			}	
-			i++;
 		}
 		return result;
 	}

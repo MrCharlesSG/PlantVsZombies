@@ -55,9 +55,4 @@ public abstract class Plant extends GameObject {
 	public int getCoste() {
 		return this.coste;
 	}
-	
-	@Override
-	public boolean plantExplosion() {
-		return true;
-	}
 }

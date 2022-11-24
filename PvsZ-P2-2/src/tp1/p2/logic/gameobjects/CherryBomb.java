@@ -8,18 +8,20 @@ public class CherryBomb extends Plant {
 
 	public static final int COSTE=50;
 	public static final int DANO=10;
-    public static final int INI_LIFES=2;
+    public static final int INI_LIFES=10;
     
     CherryBomb(){
     	super();
     	this.lifes=INI_LIFES;
     	this.coste=COSTE;
+    	this.damage=DANO;
     }
 	
 	public CherryBomb(GameWorld game, int col, int row) {
 		super(game, col, row);
     	this.lifes=INI_LIFES;
     	this.coste=COSTE;
+    	this.damage=DANO;
 	}
 
 	@Override
@@ -40,7 +42,7 @@ public class CherryBomb extends Plant {
 	@Override
 	public void update() {
 		if(this.cycles==2) {
-			game.pushAction(new ExplosionAction(col,row, damage));
+			game.pushAction(new ExplosionAction(col,row, damage, true));
 			this.lifes=0;
 		}
 	}

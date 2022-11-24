@@ -45,36 +45,38 @@ public class Game implements GameStatus, GameWorld{
 	private boolean theWinner; // si true ganan plantas, si false ganan zombies
 	
 	public Game(long seed, Level level) {
+		this.seed = seed;
+		this.level = level;
+		this.container = new GameObjectContainer();
+		this.zombiesMan= new ZombiesManager(this, level, rand);
+		reset();
+	}
+	
+	public void reset() {
+		reset(this.level, this.seed);
+	}
+
+	/**
+	 * Resets the game with the provided level and seed.
+	 * 
+	 * @param level {@link Level} Used to initialize the game.
+	 * @param seed Random seed Used to initialize the game.
+	 */
+	@Override
+	public void reset(Level level, long seed) {
 		this.suncoins=INITIAL_SUNCOINS;
 		this.cycle=0;
 		rand = new Random(seed);
-		this.seed=seed;
 		this.finish=false;
 		this.playerQuits=false;
-		container=new 	GameObjectContainer();
-		this.level=level;
 		this.theWinner=false;
-		this.zombiesMan= new ZombiesManager(this, level, rand);
 		this.actions = new ArrayDeque<>();
 		this.sunMan=new SunsManager(this, rand);
-	}
-	
-	@Override
-	public void reset(Level level, long seed) {
-		reset();
-		this.level=level;
-		rand = new Random(seed);
-		this.seed=seed;
+		this.container.reset();
 		this.zombiesMan.reset(level, rand);
 	}
 	
-	@Override
-	public void reset() {
-		this.suncoins=INITIAL_SUNCOINS;
-		this.cycle=0;
-		this.actions = new ArrayDeque<>();
-		container.reset();
-	}
+	
 	@Override
 	public void playerQuits() {
 		playerQuits=true;

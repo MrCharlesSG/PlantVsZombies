@@ -50,12 +50,12 @@ public class Peashooter extends Plant {
 	}
 	
 	private void peashooterDispara(int row, int DANO) {
-		int i=0;
+		int i=this.col+1;
 		boolean yaDisparado=false;
 		GameItem obj=game.getGameItemInPosition(i, row);
 		while(i<GameWorld.NUM_COLS && !yaDisparado) {
 			if(obj!=null) {
-				if(obj.receiveZombieAttack(DANO)) {
+				if(obj.receivePlantAttack(DANO)) {
 					yaDisparado=true;
 				}else {
 					i++;

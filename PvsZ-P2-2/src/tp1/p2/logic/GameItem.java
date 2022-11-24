@@ -18,7 +18,6 @@ public interface GameItem {
 	
 	boolean receivePlantAttack(int damage);
 
-	boolean plantExplosion();
 
 
 	

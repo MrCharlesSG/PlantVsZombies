@@ -8,7 +8,7 @@ public abstract class Zombie extends GameObject{
 	
 	protected int speed;
 	public static final int DANO_DEFAULT=1;
-    public static final int INI_LIFES_DEFAULT=8;
+    public static final int INI_LIFES_DEFAULT=3;
     public static final int SPEED_DEFAULT=1;
 	
 	public Zombie() {
@@ -25,11 +25,6 @@ public abstract class Zombie extends GameObject{
 		this.lifes=INI_LIFES_DEFAULT;
 		this.damage=DANO_DEFAULT;
 		this.speed=SPEED_DEFAULT;
-	}
-	
-	@Override
-	public boolean plantExplosion() {
-		return false;
 	}
 	
 	@Override
