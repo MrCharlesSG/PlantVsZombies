@@ -5,8 +5,8 @@ import tp1.p2.view.Messages;
 
 public class ZombieSporty extends Zombie{
 
-    public static final int INI_LIFES=8;
-    public static final int SPEED=4;
+    public static final int INI_LIFES=2;
+    public static final int SPEED=1;
 	
     public ZombieSporty() {
     	super();

@@ -19,11 +19,6 @@ public class ZombieCommon extends Zombie {
 	}
 
 	@Override
-	public String getDescription() {
-		return Messages.ZOMBIE_DESCRIPTION;
-	}
-
-	@Override
 	public String getName() {
 		return Messages.ZOMBIE_NAME;
 	}

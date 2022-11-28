@@ -57,9 +57,9 @@ public class ResetCommand extends Command {
 	@Override
 	public Command create(String[] parameters) {
 		if(parameters.length>1) {
-			Level level=Level.valueOfIgnoreCase(parameters[0]);
+			Level level=Level.valueOfIgnoreCase(parameters[1]);
 			if(level!=null) {
-				Long seed = Long.parseLong(parameters[1]);
+				Long seed = Long.parseLong(parameters[2]);
 				return new ResetCommand(level, seed);				
 			}
 		}else {

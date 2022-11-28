@@ -86,6 +86,7 @@ public class GameObjectContainer {
 			aux=gameObjects.get(i);
 			if(aux.isInPosition(col, row)) {
 				if(aux.catchSun()) {
+					aux.onExit();
 					gameObjects.remove(i);
 					cogido=true;
 				}

@@ -8,8 +8,8 @@ public abstract class Zombie extends GameObject{
 	
 	protected int speed;
 	public static final int DANO_DEFAULT=1;
-    public static final int INI_LIFES_DEFAULT=3;
-    public static final int SPEED_DEFAULT=1;
+    public static final int INI_LIFES_DEFAULT=5;
+    public static final int SPEED_DEFAULT=2;
 	
 	public Zombie() {
 		super();

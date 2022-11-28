@@ -159,7 +159,7 @@ public class Game implements GameStatus, GameWorld{
 	public boolean playerWin() {
 		if(zombiesMan.zombiesLoose()) {
 			this.theWinner=true;
-			this.finish=false;
+			this.finish=true;
 			return true;
 		}
 		return false;
@@ -191,6 +191,7 @@ public class Game implements GameStatus, GameWorld{
 			// 3. Game object updates
 			this.container.update();
 			this.zombiesMan.update();
+			this.sunMan.update();
 			
 			// 4. & 5. Remove dead and execute pending actions
 			boolean deadRemoved = true;
@@ -233,6 +234,17 @@ public class Game implements GameStatus, GameWorld{
 	@Override
 	public boolean isFullyOcuppied(int col, int row) {
 		return this.container.isFullyOccupied(col, row);
+	}
+
+	@Override
+	public int getGeneratedSuns() {
+		return this.sunMan.getGeneratedSuns();
+	}
+
+	@Override
+	public int getCaughtSuns() {
+		// TODO Auto-generated method stub
+		return this.sunMan.getCatchedSuns();
 	}
 
 	

@@ -35,8 +35,9 @@ public class HelpCommand extends Command {
 		for (Command c : Command.getAvailableCommands()) {
 			/* @formatter:off */
 			
-			buffer.append(Messages.LINE_SEPARATOR);
+			
 			buffer.append(c.helpMessage());
+			buffer.append(Messages.LINE_SEPARATOR);
 			// TODO add your code here
 			/* @formatter:on */
 		}

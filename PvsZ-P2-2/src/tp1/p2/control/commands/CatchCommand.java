@@ -23,13 +23,13 @@ public class CatchCommand extends Command {
 	protected void newCycleStarted() {
 		caughtSunThisCycle = false;
 	}
-
+/*
 	private CatchCommand(int col, int row) {
 		this.col = col;
 		this.row = row;
 		caughtSunThisCycle = false;
 	}
-
+*/
 	@Override
 	protected String getName() {
 		return Messages.COMMAND_CATCH_NAME;
@@ -67,7 +67,12 @@ public class CatchCommand extends Command {
 			if(isNumeric(parameters[2]) && this.isNumeric(parameters[1])) {
 				this.row=Integer.parseInt(parameters[2]);
 				this.col=Integer.parseInt(parameters[1]);
-				return this;
+				if(this.validPosition(col, row)) {
+					return this;
+				}else {
+					return null;
+				}
+				
 			}
 			
 		}

@@ -57,7 +57,8 @@ public class ZombiesManager {
 	}
 
 	public void update() {
-		addZombie();
+		if (!game.playerWin())
+			addZombie();
 	}
 
 	public boolean addZombie() {

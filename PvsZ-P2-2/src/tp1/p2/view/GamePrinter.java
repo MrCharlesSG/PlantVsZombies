@@ -50,6 +50,8 @@ public class GamePrinter {
 		buffer.append(Messages.NUMBER_OF_CYCLES+" "+game.getCycle()+NEW_LINE);
 		buffer.append(Messages.NUMBER_OF_COINS+" "+ game.getSuncoins()+NEW_LINE);
 		buffer.append(Messages.REMAINING_ZOMBIES+" "+game.getRemainingZombies()+NEW_LINE);
+		buffer.append(Messages.GENERATED_SUNS+" "+ game.getGeneratedSuns()+NEW_LINE);
+		buffer.append(Messages.CAUGHT_SUNS+" "+ game.getCaughtSuns()+NEW_LINE);
 
 		/* @formatter:on */
 

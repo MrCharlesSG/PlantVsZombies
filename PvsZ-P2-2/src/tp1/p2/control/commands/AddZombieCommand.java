@@ -1,7 +1,5 @@
 package tp1.p2.control.commands;
 
-import static tp1.p2.view.Messages.error;
-
 import tp1.p2.control.Command;
 import tp1.p2.control.ExecutionResult;
 import tp1.p2.logic.GameWorld;
@@ -20,13 +18,13 @@ public class AddZombieCommand extends Command {
 	public AddZombieCommand() {
 
 	}
-
+/*
 	private AddZombieCommand(int zombieIdx, int col, int row) {
 		this.zombieIdx = zombieIdx;
 		this.col = col;
 		this.row = row;
 	}
-
+*/
 	@Override
 	protected String getName() {
 		return Messages.COMMAND_ADD_ZOMBIE_NAME;

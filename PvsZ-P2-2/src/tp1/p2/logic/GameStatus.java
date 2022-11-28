@@ -16,4 +16,8 @@ public interface GameStatus {
 	public int getRemainingZombies();
 	
 	public boolean isPlayerQuits();
+	
+	public int getGeneratedSuns();
+	
+	public int getCaughtSuns();
 }

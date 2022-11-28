@@ -6,8 +6,7 @@ import tp1.p2.view.Messages;
 public class Sunflower extends Plant {
 
 	public static final int COSTE=20;
-	public static final int DANO=1;
-    public static final int INI_LIFES=3;
+    public static final int INI_LIFES=1;
     
     Sunflower(){
     	super();

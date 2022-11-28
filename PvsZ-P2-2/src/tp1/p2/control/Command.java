@@ -87,7 +87,7 @@ public abstract class Command {
 
 	public String helpMessage() {
 		StringBuilder buffer=new StringBuilder(this.getDetails());
-		buffer.append(" || ");
+		buffer.append(": ");
 		buffer.append(this.getHelp());
 		return buffer.toString();
 	}
@@ -129,5 +129,9 @@ public abstract class Command {
 	
 	protected boolean isNumeric(String str) {
 		return  str!= null && str.matches("[0-9.]+");
+	}
+	
+	protected boolean validPosition(int col, int row) {
+		return col==GameWorld.NUM_COLS && row ==GameWorld.NUM_ROWS;
 	}
 }

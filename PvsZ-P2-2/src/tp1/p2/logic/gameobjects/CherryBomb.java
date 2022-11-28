@@ -8,7 +8,7 @@ public class CherryBomb extends Plant {
 
 	public static final int COSTE=50;
 	public static final int DANO=10;
-    public static final int INI_LIFES=10;
+    public static final int INI_LIFES=2;
     
     CherryBomb(){
     	super();
