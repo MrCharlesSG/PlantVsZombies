@@ -19,7 +19,7 @@ public class PlantFactory {
 
 	public static boolean isValidPlant(String plantName) {
 		for (Plant p : AVAILABLE_PLANTS) {
-			if(p.getName().equals(plantName)) {
+			if(p.getName().equals(plantName)|| p.getSymbol().equalsIgnoreCase(plantName)) {
 				return true;
 			}
 		}

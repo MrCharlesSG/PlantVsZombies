@@ -132,6 +132,6 @@ public abstract class Command {
 	}
 	
 	protected boolean validPosition(int col, int row) {
-		return col==GameWorld.NUM_COLS && row ==GameWorld.NUM_ROWS;
+		return col<GameWorld.NUM_COLS && row <GameWorld.NUM_ROWS && col>=0 && row>=0;
 	}
 }
