@@ -63,15 +63,24 @@ public class AddPlantCommand extends Command implements Cloneable {
 
 	@Override
 	public Command create(String[] parameters) {
+		//hay 4 parámetros
 		if(parameters.length==4) {
+			//son numeros
 			if(isNumeric(parameters[2]) && this.isNumeric(parameters[3])) {
 				this.row=Integer.parseInt(parameters[3]);
 				this.col=Integer.parseInt(parameters[2]);
-				if(!isNumeric(parameters[1])) {
-					this.plantName=parameters[1].toLowerCase();
-					return this;
-				}
-				
+				//posicion es valida
+				if(this.validPosition(col, row)) {
+					//que el nombre sea correcto
+					if(!isNumeric(parameters[1])) {
+						
+						this.plantName=parameters[1].toLowerCase();
+						
+						if(PlantFactory.isValidPlant(plantName)) {
+							return this;
+						}
+					}
+				}				
 			}
 		}
 		
