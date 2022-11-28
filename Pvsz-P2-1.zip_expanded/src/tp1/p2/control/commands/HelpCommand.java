@@ -34,14 +34,14 @@ public class HelpCommand extends Command {
 		
 		for (Command c : Command.getAvailableCommands()) {
 			/* @formatter:off */
-	
-			buffer.append(c.getDetails()+Messages.HELP_DETAILS_COMMAND_HELP_SEPARATOR);
-			buffer.append(c.getHelp());
-			buffer.append(Messages.LINE_SEPARATOR);// TODO add your code here
+			
+			buffer.append(Messages.LINE_SEPARATOR);
+			buffer.append(c.helpMessage());
+			// TODO add your code here
 			/* @formatter:on */
 		}
 		System.out.println(buffer.toString());
-
+		System.out.println();
 		return new ExecutionResult(false);
 	}
 	

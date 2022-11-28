@@ -9,33 +9,23 @@ import tp1.p2.view.Messages;
 public class GameObjectContainer {
 
 	private List<GameObject> gameObjects;
-
-	private int numOfZombies;
 	
 	public GameObjectContainer() {
 		gameObjects = new ArrayList<>();
-		numOfZombies=0;
 	}
 	
 	// TODO add your code here
 	public void addObject(GameObject obj) {
-		obj.onEnter();
 		gameObjects.add(obj);
-	}
-
-	public boolean isEmpty(int col, int row) {
-		for (GameObject o: gameObjects) {
-			if(o.isInPosition(col, row)) {
-				return false;
-			}
-		}
-		return true;
+		obj.onEnter();
 	}
 	
-	public GameObject isInPosition(int col, int row) {
+	public GameObject anObjectInPosition(int col, int row) {
 		for (GameObject o: gameObjects) {
 			if(o.isInPosition(col, row)) {
-				return o;
+				if(o.fillPosition()) {
+					return o;
+				}
 			}
 		}
 		return null;
@@ -44,97 +34,71 @@ public class GameObjectContainer {
 	public void reset() {
 		gameObjects.clear();
 	}
-
+	
 	public String positionToString(int col, int row) {
-		String pos;
-		int i=0, size=gameObjects.size();
-		while(i<size) {
-			if(gameObjects.get(i).isInPosition(col, row)) {
-				pos= gameObjects.get(i).toString();
-				if(pos!=null) {
-					return pos;
+		StringBuilder buffer = new StringBuilder();
+		boolean sunPainted = false;
+		boolean sunAboutToPaint = false;
+
+		for (GameObject g : gameObjects) {
+			if(g.isAlive() && g.getCol() == col && g.getRow() == row) {
+				String objectText = g.toString();
+				sunAboutToPaint = objectText.indexOf(Messages.SUN_SYMBOL) >= 0;
+				if (sunAboutToPaint) {
+					if (!sunPainted) {
+						buffer.append(objectText);
+						sunPainted = true;
+					}
+				} else {
+					buffer.append(objectText);
 				}
 			}
 		}
-		return Messages.NOTHING_ICON;
-	}
-	
-	public void eliminar(GameItem obj) {
-		int i=0, size=gameObjects.size();
-		boolean eliminado=false;
-		while(i<size && !eliminado) {
-			if(obj==gameObjects.get(i)) {
-				gameObjects.remove(i);
-				eliminado=true;
-			}
-			else {
-				i++;
-			}
-		}
-	}
 
-	public void update() {
-		for (GameObject o: gameObjects) {
-			o.update();
-		}
+		return buffer.toString();
 	}
 	
-	public boolean finishedGame(int remainigZombies, GameWorld game) {
-		if(zombiesLlegan(game)) {
+	public boolean finishedGame(GameWorld game) {
+		if(zombiesArrive(game)) {
 			game.zombiesWin();
 			return true;
 		}
-		if(remainigZombies==0 && numOfZombies==0) {
-			game.zombiesWin();
+		if(game.playerWin()) {
 			return true;
 		}
 		return false;
 	}
 
-	private boolean zombiesLlegan(GameWorld game) {
+	private boolean zombiesArrive(GameWorld game) {
 		for (GameObject o: gameObjects) {
-			if(o.haLlegado()) {
+			if(o.hasArrive()) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public void aumentaNumOfZombies() {
-		numOfZombies++;
-	}
-
-	public boolean isFullyOccupied(int col, int row) {
-		int i = 0;
-		boolean FullyOccupied = false;
-		while(i<gameObjects.size()&&!FullyOccupied) {
-			GameObject obj = gameObjects.get(i);
-			if(obj.fillPosition()) {
-				FullyOccupied = true;
-			}
-		}
-		return FullyOccupied;
-	}
-	
 	public boolean catchSun(int col, int row) {
-		int i=0, size=gameObjects.size();
+		int i=0;
+		boolean cogido=false;
 		GameObject aux;
-		while (i<size) {
+		while (i<gameObjects.size()) {
 			aux=gameObjects.get(i);
 			if(aux.isInPosition(col, row)) {
 				if(aux.catchSun()) {
 					gameObjects.remove(i);
-					return true;
+					cogido=true;
 				}
 			}
+			i++;
 		}
-		return false;
+		return cogido;
 	}
 
 	public boolean removeDead() {
 		boolean result=false;
-		int i=0;
-		for(GameObject obj: gameObjects) {
+		for(int i=0;i< gameObjects.size(); i++) {
+			GameObject obj= gameObjects.get(i);
 			if(!obj.isAlive()) {
 				obj.onExit();
 				gameObjects.remove(i);
@@ -145,4 +109,34 @@ public class GameObjectContainer {
 		}
 		return result;
 	}
+
+	public void update() {
+		// Can't use for-each loop (for(GameObject g : gameObjexts)) without errors.
+		for(int i = 0; i < gameObjects.size(); i++) {
+			GameObject g = gameObjects.get(i);
+			if(g.isAlive()) {
+				g.update();
+				g.addCycle();
+			}
+		}
+	}
+
+	public boolean isFullyOccupied(int col, int row) {
+		int i=0;
+		boolean fullyOcuppied = false;
+
+		while (i<gameObjects.size() && !fullyOcuppied) {
+			GameObject g = gameObjects.get(i);
+			if (g.isAlive() && g.isInPosition(col, row)) {
+				fullyOcuppied = g.fillPosition();
+			}
+			i++;
+		}
+
+		return fullyOcuppied;
+	}
+
+	// TODO add your code here
+
 }
+

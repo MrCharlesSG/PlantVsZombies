@@ -1,5 +1,7 @@
 package tp1.p2.control.commands;
 
+import static tp1.p2.view.Messages.error;
+
 import tp1.p2.control.Command;
 import tp1.p2.control.ExecutionResult;
 import tp1.p2.logic.GameWorld;
@@ -50,23 +52,30 @@ public class CatchCommand extends Command {
 
 	@Override
 	public ExecutionResult execute(GameWorld game) {
-		if(game.catchSun(this.col, this.row)) {
-			game.update();
-			return new ExecutionResult(true);
+		if(!caughtSunThisCycle) {
+			if(game.catchSun(this.col, this.row)) {
+				caughtSunThisCycle=true;
+				game.update();
+				return new ExecutionResult(true);
+			}
 		}
-		
 		return new ExecutionResult(false);
 	}
 
 	@Override
 	public Command create(String[] parameters) {
 		if(parameters.length==3) {
-			this.row=stringToInt(parameters[3]);
-			this.col=stringToInt(parameters[2]);
-			return this;
+			if(isNumeric(parameters[2]) && this.isNumeric(parameters[1])) {
+				this.row=Integer.parseInt(parameters[2]);
+				this.col=Integer.parseInt(parameters[1]);
+				return this;
+			}
+			
 		}
 		
 		return null;
 	}
+
+
 
 }

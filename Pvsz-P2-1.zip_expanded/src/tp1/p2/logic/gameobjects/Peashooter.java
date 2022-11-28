@@ -17,14 +17,31 @@ public class Peashooter extends Plant {
     	this.damage=DANO;
     }
 
-	@Override
-	protected String getSymbol() {
-		return Messages.PEASHOOTER_SYMBOL;
+	public Peashooter(GameWorld game, int col, int row) {
+		super(game, col, row);
+		this.lifes=INI_LIFES;
+    	this.coste=COSTE;
+    	this.damage=DANO;
 	}
 
 	@Override
+	protected String getSymbol() {
+		return Messages.PEASHOOTER_SYMBOL;
+	}	
+	
+	@Override
+	protected String getShortcut() {
+		return Messages.PEASHOOTER_NAME_SHORTCUT;
+	}
+	
+	@Override
 	public String getName() {
 		return Messages.PEASHOOTER_NAME;
+	}
+	
+	@Override
+	public int getIniLifes() {
+		return INI_LIFES;
 	}
 	
 	@Override
@@ -33,12 +50,12 @@ public class Peashooter extends Plant {
 	}
 	
 	private void peashooterDispara(int row, int DANO) {
-		int i=0;
+		int i = this.col;
 		boolean yaDisparado=false;
 		GameItem obj=game.getGameItemInPosition(i, row);
 		while(i<GameWorld.NUM_COLS && !yaDisparado) {
 			if(obj!=null) {
-				if(obj.receiveZombieAttack(DANO)) {
+				if(obj.receivePlantAttack(DANO)) {
 					yaDisparado=true;
 				}else {
 					i++;
@@ -53,18 +70,10 @@ public class Peashooter extends Plant {
 	}
 
 	@Override
-	public int getCoste() {
-		return COSTE;
+	public GameObject create(GameWorld game, int col, int row) {
+		return new Peashooter(game, col, row);
 	}
 
-	@Override
-	protected String getShortcut() {
-		return Messages.PEASHOOTER_NAME_SHORTCUT;
-	}
 
-	@Override
-	int getIniLifes() {
-		return INI_LIFES;
-	}
-	
+
 }

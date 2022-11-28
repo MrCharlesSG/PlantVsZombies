@@ -1,14 +1,20 @@
 
 package tp1.p2.logic;
 
+import static tp1.p2.view.Messages.error;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.List;
 import java.util.Random;
 
 import tp1.p2.control.Command;
+import tp1.p2.control.ExecutionResult;
 import tp1.p2.control.Level;
 import tp1.p2.logic.actions.GameAction;
 import tp1.p2.logic.gameobjects.GameObject;
+import tp1.p2.logic.gameobjects.Sun;
+import tp1.p2.view.Messages;
 
 public class Game implements GameStatus, GameWorld{
 	
@@ -23,8 +29,10 @@ public class Game implements GameStatus, GameWorld{
 	ZombiesManager zombiesMan;
 	
 	Random rand;
-
-	private Deque<GameAction> actions = new ArrayDeque<>();
+	
+	SunsManager sunMan;
+	
+	private Deque<GameAction> actions;
 	
 	private int cycle;
 
@@ -47,38 +55,10 @@ public class Game implements GameStatus, GameWorld{
 		this.level=level;
 		this.theWinner=false;
 		this.zombiesMan= new ZombiesManager(this, level, rand);
+		this.actions = new ArrayDeque<>();
+		this.sunMan=new SunsManager(this, rand);
 	}
 	
-	@Override
-	public void playerQuits() {
-		playerQuits=true;
-	}
-
-	@Override
-	public boolean execute(Command command) {
-		cycle++;
-		return command.execute(this).draw();
-	}
-
-	@Override
-	public boolean isEmpty(int col, int row) {
-		return container.isFullyOccupied(col, row);
-	}
-
-	@Override
-	public void addObj(GameObject obj) {
-		container.addObject(obj);
-	}
-	
-	@Override
-	public boolean esSuficiente(int coste) {
-		if(coste<=this.suncoins) {
-			this.suncoins-=coste;
-			return true;
-		}
-		return false;
-	}
-
 	@Override
 	public void reset(Level level, long seed) {
 		reset();
@@ -92,8 +72,34 @@ public class Game implements GameStatus, GameWorld{
 	public void reset() {
 		this.suncoins=INITIAL_SUNCOINS;
 		this.cycle=0;
+		this.actions = new ArrayDeque<>();
 		container.reset();
 	}
+	@Override
+	public void playerQuits() {
+		playerQuits=true;
+	}
+
+	@Override
+	public boolean execute(Command command) {
+		return command.execute(this).draw();
+	}
+
+	@Override
+	public void addItem (GameObject obj) {
+		container.addObject(obj);
+	}
+	
+	@Override
+	public boolean esSuficiente(int coste) {
+		if(coste<=this.suncoins) {
+			this.suncoins-=coste;
+			return true;
+		}
+		return false;
+	}
+
+	
 
 	@Override
 	public int getCycle() {
@@ -118,7 +124,7 @@ public class Game implements GameStatus, GameWorld{
 	@Override
 	public String positionToString(int col, int row) {
 		
-		return container.positionToString(col,row);
+		return container.positionToString( col,row);
 	}
 
 	@Override
@@ -133,23 +139,25 @@ public class Game implements GameStatus, GameWorld{
 
 	@Override
 	public GameObject isInPosition(int col, int row) {
-		return container.isInPosition(col, row);
+		return container.anObjectInPosition(col, row);
 	}
 
 	@Override
-	public void GeneraSunCoins(int numSunCoins) {
-		this.suncoins+=numSunCoins;
+	public void generaSunCoins() {
+		sunMan.addSun();
 	}
 
 	@Override
 	public void zombiesWin() {
 		this.theWinner=false;
+		this.finish=true;
 	}
 
 	@Override
 	public boolean playerWin() {
 		if(zombiesMan.zombiesLoose()) {
 			this.theWinner=true;
+			this.finish=false;
 			return true;
 		}
 		return false;
@@ -172,28 +180,33 @@ public class Game implements GameStatus, GameWorld{
 	
 	@Override
 	public void update() {
-		
+
 	    // 1. Execute pending actions
-			if(areTherePendingActions()) {
-				executePendingActions();
-			}
-			
+			executePendingActions();
+
 			// 2. Execute game Actions
-			
+			if(this.cycle%5 == 0 && this.cycle != 0) {
+				this.generaSunCoins();
+			}
 			// 3. Game object updates
+			this.zombiesMan.update();
 			this.container.update();
+			
 			// 4. & 5. Remove dead and execute pending actions
 			boolean deadRemoved = true;
 			while (deadRemoved || areTherePendingActions()) {
 				// 4. Remove dead
 				deadRemoved = container.removeDead();
-
+				
 				// 5. execute pending actions
 				executePendingActions();
 			}
 
+			this.cycle++;
+
 			// 6. Notify commands that a new cycle started
 			Command.newCycle();
+			
 	}
 
 	@Override
@@ -217,18 +230,11 @@ public class Game implements GameStatus, GameWorld{
 		suncoins+=valueOfChange;
 	}
 	
-	/**
-	 * Checks if a cell is fully occupied, that is, the position can be shared between an NPC (Plant, Zombie) and Suns .
-	 * 
-	 * @param col Column of the cell
-	 * @param row Row of the cell
-	 * 
-	 * @return <code>true</code> if the cell is fully occupied, <code>false</code>
-	 *         otherwise.
-	 */
+	
 	@Override
 	public boolean isFullyOcuppied(int col, int row) {
 		return this.container.isFullyOccupied(col, row);
 	}
+
 	
 }

@@ -14,15 +14,14 @@ public interface GameWorld {
 
 	public static final int NUM_COLS = 8;
 
+
     void playerQuits();
 
     void update();
     
     boolean execute(Command command);
-
-	boolean isEmpty(int col, int row);
 	
-	void addObj(GameObject obj);
+	void addItem(GameObject obj);
 	
 	boolean esSuficiente(int coste);
 
@@ -32,7 +31,7 @@ public interface GameWorld {
 	
 	GameObject isInPosition(int col, int row);
 		
-	void GeneraSunCoins(int numSunCoins);
+	void generaSunCoins();
 	
 	void reduceZombie();
 

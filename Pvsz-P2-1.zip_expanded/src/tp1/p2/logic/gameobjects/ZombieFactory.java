@@ -6,34 +6,28 @@ import java.util.List;
 
 import tp1.p2.logic.GameWorld;
 
-public class ZombieFactory {	
+public class ZombieFactory {
+	
 	
 	private static final List<Zombie> AVAILABLE_ZOMBIES = Arrays.asList(
-			new DefaultZombie(),
-			new BucketHead(),
-			new Sporty(),
-			new ExplosiveZombie()
+			new ZombieCommon(),	
+			new ZombieBucketHead(),
+			new ZombieSporty(),
+			new ZombieExplosive()
 		);
 	
 	public static List<Zombie> getAvailableZombies() {
 		return Collections.unmodifiableList(AVAILABLE_ZOMBIES);
 	}
-	
-	public static boolean isValidZombie(int zombieIdx) {
-		return zombieIdx >= 0 && zombieIdx < AVAILABLE_ZOMBIES.size();
-	}
-	
-	public static Zombie spawnZombie(int row, GameWorld game, int zombieType) {
-		int col=GameWorld.NUM_COLS;
-		if(isValidZombie(zombieType)) {
-			if(GameObject.posValida(col, row, col, GameWorld.NUM_ROWS)){
-				col++;
-				if(game.isEmpty(col, row)) {
-					Zombie zb=AVAILABLE_ZOMBIES.get(zombieType);
-					zb.create(game, col, row);
-					return zb;
-				}
-			}
+
+	public static GameObject spawnZombie(int row,int col, GameWorld game, int zombieType) {
+
+		if(GameObject.posValida(col, row, GameWorld.NUM_COLS, GameWorld.NUM_ROWS)&&!game.isFullyOcuppied(col, row)){
+			col++;
+			
+			GameObject zb=AVAILABLE_ZOMBIES.get(zombieType).create(game, col, row);
+			return zb;
+			
 		}
 		return null;
 	}
