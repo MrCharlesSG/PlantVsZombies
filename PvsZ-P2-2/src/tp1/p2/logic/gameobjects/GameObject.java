@@ -1,8 +1,5 @@
 package tp1.p2.logic.gameobjects;
 
-import static tp1.p2.view.Messages.status;
-
-import tp1.p2.logic.Game;
 import tp1.p2.logic.GameItem;
 import tp1.p2.logic.GameWorld;
 import tp1.p2.view.Messages;

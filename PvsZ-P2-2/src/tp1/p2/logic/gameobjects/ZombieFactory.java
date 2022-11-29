@@ -29,6 +29,13 @@ public class ZombieFactory {
 			return zb;
 			
 		}
+		else {
+			GameWorld.invalidPosition();
+		}
 		return null;
+	}
+	
+	public static boolean correctIndex(int i) {
+		return i>=0 && i<AVAILABLE_ZOMBIES.size();
 	}
 }

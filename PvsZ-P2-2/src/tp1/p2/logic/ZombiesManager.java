@@ -2,10 +2,7 @@ package tp1.p2.logic;
 
 import java.util.Random;
 
-import tp1.p2.logic.Game;
 import tp1.p2.control.Level;
-import tp1.p2.logic.gameobjects.GameObject;
-import tp1.p2.logic.gameobjects.Zombie;
 import tp1.p2.logic.gameobjects.ZombieFactory;
 
 /**

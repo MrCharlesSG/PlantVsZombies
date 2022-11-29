@@ -35,8 +35,8 @@ public class AddPlantCheatCommand extends Command {
 	@Override
 	public Command create(String[] parameters) {
 		Command c=new AddPlantCommand(false);
-		c.create(parameters);
-		return c;
+		
+		return c.create(parameters);
 	}
 
 }

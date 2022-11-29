@@ -114,11 +114,13 @@ public abstract class Command {
 
 	public Command create(String[] parameters) {
 		if (parameters.length != 0) {
-			System.out.println(error(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER));
+			GameWorld.incorerectParameterNumber();
 			return null;
 		}
 		return this;
 	}
+	
+	
 
 	/**
 	 * Notifies the {@link Command} that a new cycle has started.

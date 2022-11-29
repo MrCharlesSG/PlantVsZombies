@@ -59,10 +59,25 @@ public class AddZombieCommand extends Command {
 	@Override
 	public Command create(String[] parameters) {
 		if(parameters.length==4) {
-			this.row=Integer.parseInt(parameters[3]);
-			this.col=Integer.parseInt(parameters[2]);
-			this.zombieIdx=Integer.parseInt(parameters[1]);
-			return this;
+			if(isNumeric(parameters[2]) && this.isNumeric(parameters[3]) && this.isNumeric(parameters[1])) {
+				this.row=Integer.parseInt(parameters[3]);
+				this.col=Integer.parseInt(parameters[2]);
+				this.zombieIdx=Integer.parseInt(parameters[1]);
+				if(this.validPosition(col, row)) {
+					if( ZombieFactory.correctIndex(zombieIdx)) {
+						return this;
+					}else {
+						GameWorld.invalidGObject();
+					}
+				
+					}else {
+						GameWorld.invalidPosition();
+					}
+			}else {
+				GameWorld.invalidPosition();
+			}
+		}else {
+			GameWorld.incorerectParameterNumber();
 		}
 		return null;
 	}

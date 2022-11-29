@@ -1,7 +1,5 @@
 package tp1.p2.control.commands;
 
-import static tp1.p2.view.Messages.error;
-
 import tp1.p2.control.Command;
 import tp1.p2.control.ExecutionResult;
 import tp1.p2.logic.GameWorld;
@@ -56,6 +54,8 @@ public class CatchCommand extends Command {
 			if(game.catchSun(this.col, this.row)) {
 				caughtSunThisCycle=true;
 				return new ExecutionResult(true);
+			}else {
+				GameWorld.notSunInPosition(col, row);
 			}
 		}
 		return new ExecutionResult(false);
@@ -70,11 +70,18 @@ public class CatchCommand extends Command {
 				if(this.validPosition(col, row)) {
 					return this;
 				}else {
+					
+					GameWorld.invalidPosition();
+					
 					return null;
 				}
 				
+			}else {
+				GameWorld.invalidPosition();
 			}
 			
+		}else {
+			GameWorld.incorerectParameterNumber();
 		}
 		
 		return null;

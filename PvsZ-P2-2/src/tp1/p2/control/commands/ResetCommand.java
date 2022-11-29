@@ -1,7 +1,5 @@
 package tp1.p2.control.commands;
 
-import static tp1.p2.view.Messages.error;
-
 import tp1.p2.control.Command;
 import tp1.p2.control.ExecutionResult;
 import tp1.p2.control.Level;
@@ -61,11 +59,13 @@ public class ResetCommand extends Command {
 			if(level!=null) {
 				Long seed = Long.parseLong(parameters[2]);
 				return new ResetCommand(level, seed);				
+			}else {
+				GameWorld.notAllowedLevel();
 			}
 		}else {
 			return new ResetCommand();
 		}
 		return null;
 	}
-
+	
 }

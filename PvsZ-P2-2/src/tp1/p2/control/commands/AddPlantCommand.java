@@ -1,7 +1,5 @@
 package tp1.p2.control.commands;
 
-import static tp1.p2.view.Messages.error;
-
 import tp1.p2.control.Command;
 import tp1.p2.control.ExecutionResult;
 import tp1.p2.logic.GameWorld;
@@ -78,13 +76,22 @@ public class AddPlantCommand extends Command implements Cloneable {
 						
 						if(PlantFactory.isValidPlant(plantName)) {
 							return this;
+						}else {
+							GameWorld.invalidGObject();
 						}
+					}else {
+						GameWorld.invalidGObject();
 					}
+				}else {
+					GameWorld.invalidPosition();
 				}				
+			}else {
+				GameWorld.invalidPosition();
 			}
+		}else {
+			GameWorld.incorerectParameterNumber();
 		}
 		
 		return null;
 	}
-
 }

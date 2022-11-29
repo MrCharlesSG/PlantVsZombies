@@ -1,20 +1,16 @@
 
 package tp1.p2.logic;
 
-import static tp1.p2.view.Messages.error;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.List;
 import java.util.Random;
 
 import tp1.p2.control.Command;
-import tp1.p2.control.ExecutionResult;
 import tp1.p2.control.Level;
 import tp1.p2.logic.actions.GameAction;
 import tp1.p2.logic.gameobjects.GameObject;
-import tp1.p2.logic.gameobjects.Sun;
-import tp1.p2.view.Messages;
+
 
 public class Game implements GameStatus, GameWorld{
 	

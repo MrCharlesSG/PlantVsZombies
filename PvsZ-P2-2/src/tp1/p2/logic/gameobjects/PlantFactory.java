@@ -32,12 +32,18 @@ public class PlantFactory {
 			if(!game.isFullyOcuppied(col, row)) {
 				for(Plant p: AVAILABLE_PLANTS) {
 					if(p.getName().toLowerCase().equals(plantName)|| p.getSymbol().toLowerCase().equals(plantName)) {
-						if(game.esSuficiente(p.getCoste())|| !consumeCoins) {
+						if(game.esSuficiente(p.getCoste())|| !consumeCoins) {							
 							return p.create(game, col, row);	
+						}else {
+							GameWorld.notEnoughtSuncoins();
 						}
 					}
 				}
+			}else {
+				GameWorld.invalidPosition();
 			}
+		}else {
+			GameWorld.invalidPosition();
 		}
 		return null;
 	}
