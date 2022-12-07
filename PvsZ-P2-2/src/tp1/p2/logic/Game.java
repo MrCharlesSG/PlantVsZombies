@@ -54,7 +54,7 @@ public class Game implements GameStatus, GameWorld{
 
 	/**
 	 * Resets the game with the provided level and seed.
-	 * 
+	 * º
 	 * @param level {@link Level} Used to initialize the game.
 	 * @param seed Random seed Used to initialize the game.
 	 */
@@ -182,9 +182,7 @@ public class Game implements GameStatus, GameWorld{
 	    // 1. Execute pending actions
 			executePendingActions();
 
-			// 2. Execute game Actions
-
-			// 3. Game object updates
+			// 2 & 3 Execute game Actions Game object updates
 			this.container.update();
 			this.zombiesMan.update();
 			this.sunMan.update();

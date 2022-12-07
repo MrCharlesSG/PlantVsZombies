@@ -6,7 +6,7 @@ import tp1.p2.view.Messages;
 
 public class ZombieExplosive extends Zombie{
 
-	public static int EXPLOSION_DAMAGE=8;
+	public static int EXPLOSION_DAMAGE=3;
 	
 	public ZombieExplosive() {
 		super();

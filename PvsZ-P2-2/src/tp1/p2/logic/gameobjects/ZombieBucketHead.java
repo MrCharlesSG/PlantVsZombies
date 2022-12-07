@@ -19,6 +19,8 @@ public class ZombieBucketHead extends Zombie{
 	
 	public ZombieBucketHead(GameWorld game, int col, int row) {
 		super(game, col, row);
+		this.lifes=INI_LIFES;
+		this.speed=SPEED;
 	}
 
 

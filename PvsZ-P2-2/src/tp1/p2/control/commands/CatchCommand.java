@@ -21,13 +21,7 @@ public class CatchCommand extends Command {
 	protected void newCycleStarted() {
 		caughtSunThisCycle = false;
 	}
-/*
-	private CatchCommand(int col, int row) {
-		this.col = col;
-		this.row = row;
-		caughtSunThisCycle = false;
-	}
-*/
+
 	@Override
 	protected String getName() {
 		return Messages.COMMAND_CATCH_NAME;

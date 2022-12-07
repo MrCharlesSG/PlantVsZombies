@@ -26,11 +26,16 @@ public class CherryBomb extends Plant {
 
 	@Override
 	protected String getSymbol() {
-		return Messages.CHERRY_BOMB_SYMBOL;
+		if(this.cycles%2==0) {
+			return Messages.CHERRY_BOMB_SYMBOL.toUpperCase();
+		}else {
+			return Messages.CHERRY_BOMB_SYMBOL;
+		}
 	}
 
 	@Override
 	public String getName() {
+		
 		return Messages.CHERRY_BOMB_NAME;
 	}
 	

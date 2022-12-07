@@ -1,10 +1,13 @@
 package tp1.p2;
 
+import static tp1.p2.view.Messages.error;
+
 import java.util.Locale;
 import java.util.Scanner;
 
 import tp1.p2.control.Controller;
 import tp1.p2.control.Level;
+import tp1.p2.control.exceptions.GameException;
 import tp1.p2.logic.Game;
 import tp1.p2.view.Messages;
 
