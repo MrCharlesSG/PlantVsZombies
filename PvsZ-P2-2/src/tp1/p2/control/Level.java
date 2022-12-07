@@ -1,5 +1,7 @@
 package tp1.p2.control;
 
+import tp1.p2.control.exceptions.GameException;
+
 /**
  * Represents the allowed levels in the game.
  *
@@ -31,13 +33,12 @@ public enum Level {
 	 * @param inputString string to parse
 	 * @return the parsed {@link Level} or <code>null</code> if none match.
 	 */
-	public static Level valueOfIgnoreCase(String inputString) {
+	public static Level valueOfIgnoreCase(String inputString) throws GameException {
 		for (Level level : Level.values()) {
 			if (level.name().equalsIgnoreCase(inputString)) {
 				return level;
 			}
 		}
-		return null;
 	}
 
 	/**

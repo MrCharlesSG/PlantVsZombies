@@ -4,8 +4,11 @@ import static tp1.p2.view.Messages.error;
 
 import tp1.p2.control.Command;
 import tp1.p2.control.Level;
+import tp1.p2.control.exceptions.GameException;
 import tp1.p2.logic.actions.GameAction;
 import tp1.p2.logic.gameobjects.GameObject;
+import tp1.p2.control.Level;
+import tp1.p2.control.exceptions.GameException;
 import tp1.p2.view.Messages;
 
 public interface GameWorld {
@@ -17,17 +20,23 @@ public interface GameWorld {
 
     void playerQuits();
 
-    void update();
+    void update() throws GameException;
     
-    boolean execute(Command command);
+    boolean execute(Command command) throws GameException;
 	
-	void addItem(GameObject obj);
+    void checkValidZombiePosition(int col, int row) throws GameException;
+
+	void tryToCatchObject(int col, int row) throws GameException;
 	
 	boolean esSuficiente(int coste);
 
-	void reset(Level level, long seed);
+	void reset(Level level, long seed) throws GameException;
 	
-	void reset() ;
+	void reset() throws GameException ;
+	
+	void tryToBuy(int cost) throws GameException;
+	
+	void checkValidPlantPosition(int col, int row) throws GameException;
 	
 	GameObject isInPosition(int col, int row);
 		
@@ -43,7 +52,7 @@ public interface GameWorld {
 	
 	public int getCycle();
 
-	boolean catchSun(int col, int row);
+	boolean catchObject(int col, int row) throws GameException;
 
 	void convertSun(int valueOfChange);
 
@@ -51,36 +60,9 @@ public interface GameWorld {
 	
 	boolean isFullyOcuppied(int col, int row);
 
-	static void incorerectParameterNumber() {
-		System.out.println(error(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER));
-	}
-	
-	static void unknownCommand() {
-		System.out.println(error(Messages.UNKNOWN_COMMAND));
-	}
-	
-	static void invalidCommand() {
-		System.out.println(error(Messages.INVALID_COMMAND));
-	}
-	
-	static void invalidPosition() {
-		System.out.println(error(Messages.INVALID_POSITION));
-	}
-	
-	static void invalidGObject() {
-		System.out.println(error(Messages.INVALID_GAME_OBJECT));
-	}
-	
-	static void notEnoughtSuncoins() {
-		System.out.println(error(Messages.NOT_ENOUGH_COINS));
-	}
-	
-	static void notSunInPosition(int col, int row) {
-		System.out.println(error(Messages.NO_CATCHABLE_IN_POSITION.formatted(col, row)));
-	}
-	
-	static void notAllowedLevel() {
-		System.out.println(error("Invalid Level"));
-		System.out.println(error(Messages.ALLOWED_LEVELS));
-	}
+	void spawnPlant(int col, int row, String plantName);
+
+	void addObject(GameObject spawnPlant) throws GameException;
+
+	void isValidPosition() throws GameException;
 }

@@ -8,6 +8,7 @@ import java.util.Random;
 
 import tp1.p2.control.Command;
 import tp1.p2.control.Level;
+import tp1.p2.control.exceptions.GameException;
 import tp1.p2.logic.actions.GameAction;
 import tp1.p2.logic.gameobjects.GameObject;
 
@@ -40,7 +41,7 @@ public class Game implements GameStatus, GameWorld{
 	
 	private boolean theWinner; // si true ganan plantas, si false ganan zombies
 	
-	public Game(long seed, Level level) {
+	public Game(long seed, Level level) throws GameException {
 		this.seed = seed;
 		this.level = level;
 		this.container = new GameObjectContainer();
@@ -48,7 +49,7 @@ public class Game implements GameStatus, GameWorld{
 		reset();
 	}
 	
-	public void reset() {
+	public void reset() throws GameException{
 		reset(this.level, this.seed);
 	}
 
@@ -59,7 +60,7 @@ public class Game implements GameStatus, GameWorld{
 	 * @param seed Random seed Used to initialize the game.
 	 */
 	@Override
-	public void reset(Level level, long seed) {
+	public void reset(Level level, long seed) throws GameException {
 		this.suncoins=INITIAL_SUNCOINS;
 		this.cycle=0;
 		rand = new Random(seed);
@@ -79,8 +80,8 @@ public class Game implements GameStatus, GameWorld{
 	}
 
 	@Override
-	public boolean execute(Command command) {
-		return command.execute(this).draw();
+	public boolean execute(Command command) throws GameException {
+		return command.execute(this);
 	}
 
 	@Override
@@ -177,12 +178,12 @@ public class Game implements GameStatus, GameWorld{
 	}
 	
 	@Override
-	public void update() {
+	public void update() throws GameException{
 
 	    // 1. Execute pending actions
 			executePendingActions();
 
-			// 2 & 3 Execute game Actions Game object updates
+			// 2 & 3 Execute game Actions and Game object updates
 			this.container.update();
 			this.zombiesMan.update();
 			this.sunMan.update();

@@ -1,9 +1,10 @@
 package tp1.p2.control.commands;
 
 import tp1.p2.control.Command;
-import tp1.p2.control.ExecutionResult;
+import tp1.p2.control.exceptions.CommandExecuteException;
+import tp1.p2.control.exceptions.CommandParseException;
+import tp1.p2.control.exceptions.GameException;
 import tp1.p2.logic.GameWorld;
-import tp1.p2.logic.gameobjects.GameObject;
 import tp1.p2.logic.gameobjects.ZombieFactory;
 import tp1.p2.view.Messages;
 
@@ -46,40 +47,31 @@ public class AddZombieCommand extends Command {
 	}
 
 	@Override
-	public ExecutionResult execute(GameWorld game) {
-		GameObject aux= ZombieFactory.spawnZombie(row,col, game, zombieIdx);
-		if(aux!=null) {
-			game.addItem(aux);
+	public boolean execute(GameWorld game) throws GameException  {
+		try {
+			game.addObject(ZombieFactory.spawnZombie(row,col, game, zombieIdx));
 			game.update();
-			return new ExecutionResult(true);
+			return true;
+		}catch(CommandExecuteException e){
+			throw e;
 		}
-		return new ExecutionResult(false);
 	}
 
 	@Override
-	public Command create(String[] parameters) {
-		if(parameters.length==4) {
-			if(isNumeric(parameters[2]) && this.isNumeric(parameters[3]) && this.isNumeric(parameters[1])) {
-				this.row=Integer.parseInt(parameters[3]);
-				this.col=Integer.parseInt(parameters[2]);
-				this.zombieIdx=Integer.parseInt(parameters[1]);
-				if(this.validPosition(col, row)) {
-					if( ZombieFactory.correctIndex(zombieIdx)) {
-						return this;
-					}else {
-						GameWorld.invalidGObject();
-					}
-				
-					}else {
-						GameWorld.invalidPosition();
-					}
+	public Command create(String[] parameters) throws GameException  {
+		try {
+			this.row=Integer.parseInt(parameters[3]);
+			this.col=Integer.parseInt(parameters[2]);
+			this.zombieIdx=Integer.parseInt(parameters[1]);
+			
+			if(ZombieFactory.getAvailableZombies().size()<=this.zombieIdx) {
+				throw new CommandParseException(Messages.INVALID_GAME_OBJECT);
 			}else {
-				GameWorld.invalidPosition();
+				return this;
 			}
-		}else {
-			GameWorld.incorerectParameterNumber();
+		} catch(NumberFormatException e) {
+			throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER, e);
 		}
-		return null;
 	}
 
 }

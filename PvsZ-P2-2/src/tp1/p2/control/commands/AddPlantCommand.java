@@ -1,9 +1,10 @@
 package tp1.p2.control.commands;
 
 import tp1.p2.control.Command;
-import tp1.p2.control.ExecutionResult;
+import tp1.p2.control.exceptions.CommandExecuteException;
+import tp1.p2.control.exceptions.CommandParseException;
+import tp1.p2.control.exceptions.GameException;
 import tp1.p2.logic.GameWorld;
-import tp1.p2.logic.gameobjects.GameObject;
 import tp1.p2.logic.gameobjects.PlantFactory;
 import tp1.p2.view.Messages;
 
@@ -19,7 +20,6 @@ public class AddPlantCommand extends Command implements Cloneable {
 
 	public AddPlantCommand() {
 		this(true);
-	
 	}
 
 	public AddPlantCommand(boolean consumeCoins) {
@@ -48,50 +48,31 @@ public class AddPlantCommand extends Command implements Cloneable {
 	}
 
 	@Override
-	public ExecutionResult execute(GameWorld game) {
-		
-		GameObject aux=PlantFactory.spawnPlant(plantName, game, col, row, consumeCoins);
-		if(aux!= null) {
-			game.addItem(aux);
+	public boolean execute(GameWorld game)  throws GameException {
+		try{
+			game.addObject(PlantFactory.spawnPlant(plantName, game, col, row, consumeCoins));
 			game.update();
-			return new ExecutionResult(true);
+			return true;
+		}catch(CommandExecuteException e){
+			throw e;
 		}
-		return new ExecutionResult(false);
+		
 	}
 
 	@Override
-	public Command create(String[] parameters) {
-		//hay 4 parámetros
-		if(parameters.length==4) {
-			//son numeros
-			if(isNumeric(parameters[2]) && this.isNumeric(parameters[3])) {
-				this.row=Integer.parseInt(parameters[3]);
-				this.col=Integer.parseInt(parameters[2]);
-				//posicion es valida
-				if(this.validPosition(col, row)) {
-					//que el nombre sea correcto
-					if(!isNumeric(parameters[1])) {
-						
-						this.plantName=parameters[1].toLowerCase();
-						
-						if(PlantFactory.isValidPlant(plantName)) {
-							return this;
-						}else {
-							GameWorld.invalidGObject();
-						}
-					}else {
-						GameWorld.invalidGObject();
-					}
-				}else {
-					GameWorld.invalidPosition();
-				}				
+	public Command create(String[] parameters) throws GameException  {
+		try {	
+			this.row=Integer.parseInt(parameters[3]);
+			this.col=Integer.parseInt(parameters[2]);
+			this.plantName=parameters[1].toLowerCase();
+			
+			if(!PlantFactory.isValidPlant(plantName)) {
+				throw new CommandParseException(Messages.INVALID_GAME_OBJECT);
 			}else {
-				GameWorld.invalidPosition();
+				return this;
 			}
-		}else {
-			GameWorld.incorerectParameterNumber();
+		}catch(NumberFormatException e) {
+			throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER, e);
 		}
-		
-		return null;
 	}
 }

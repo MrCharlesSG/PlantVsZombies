@@ -4,7 +4,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import tp1.p2.control.exceptions.GameException;
+import tp1.p2.control.exceptions.InvalidPositionException;
 import tp1.p2.logic.GameWorld;
+import tp1.p2.view.Messages;
 
 public class ZombieFactory {
 	
@@ -20,22 +23,25 @@ public class ZombieFactory {
 		return Collections.unmodifiableList(AVAILABLE_ZOMBIES);
 	}
 
-	public static GameObject spawnZombie(int row,int col, GameWorld game, int zombieType) {
-
-		if(GameObject.posValida(col, row, GameWorld.NUM_COLS, GameWorld.NUM_ROWS)){
-			col++;
-			
-			GameObject zb=AVAILABLE_ZOMBIES.get(zombieType).create(game, col, row);
-			return zb;
-			
+	public static GameObject spawnZombie(int row,int col, GameWorld game, int zombieType) throws GameException {
+		if (!isValidZombie(zombieType)) {
+			throw new GameException(Messages.INVALID_GAME_OBJECT);
+		}else {
+			if(GameObject.posValida(col, row, GameWorld.NUM_COLS, GameWorld.NUM_ROWS)){
+				col++;
+				
+				GameObject zb=AVAILABLE_ZOMBIES.get(zombieType).create(game, col, row);
+				return zb;
+				
+			}
+			else {
+				throw new InvalidPositionException(Messages.INVALID_POSITION);
+			}
 		}
-		else {
-			GameWorld.invalidPosition();
-		}
-		return null;
 	}
 	
-	public static boolean correctIndex(int i) {
+	private static boolean isValidZombie(int i) {
 		return i>=0 && i<AVAILABLE_ZOMBIES.size();
 	}
+
 }
