@@ -47,7 +47,7 @@ public abstract class Plant extends GameObject {
 		return false;
 	}
 	
-	public boolean catchSun() {
+	public boolean catchObject() {
 		return false;
 	}
 	

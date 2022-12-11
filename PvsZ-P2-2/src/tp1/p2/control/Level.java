@@ -1,5 +1,6 @@
 package tp1.p2.control;
 
+import tp1.p2.control.exceptions.CommandExecuteException;
 import tp1.p2.control.exceptions.GameException;
 
 /**
@@ -33,12 +34,13 @@ public enum Level {
 	 * @param inputString string to parse
 	 * @return the parsed {@link Level} or <code>null</code> if none match.
 	 */
-	public static Level valueOfIgnoreCase(String inputString) throws GameException {
+	public static Level valueOfIgnoreCase(String inputString) {
 		for (Level level : Level.values()) {
 			if (level.name().equalsIgnoreCase(inputString)) {
 				return level;
 			}
 		}
+		return null;
 	}
 
 	/**

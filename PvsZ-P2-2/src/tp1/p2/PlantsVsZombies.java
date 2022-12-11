@@ -37,7 +37,9 @@ public class PlantsVsZombies {
 			usage();
 			return;
 		}
-		Level level = Level.valueOfIgnoreCase(args[0]);
+		Level level;
+		level = Level.valueOfIgnoreCase(args[0]);
+		
 		if (level == null) {
 			System.out.println(Messages.ALLOWED_LEVELS);
 			usage();

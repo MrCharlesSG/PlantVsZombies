@@ -65,7 +65,7 @@ public class Sun extends GameObject {
 		return false;
 	}
 	
-	public boolean catchSun() {
+	public boolean catchObject() {
 		game.convertSun(VALUE_OF_CHANGE);
 		return true;
 	}

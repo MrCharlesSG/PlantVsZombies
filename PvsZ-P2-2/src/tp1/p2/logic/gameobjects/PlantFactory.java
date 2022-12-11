@@ -4,11 +4,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import tp1.p2.control.exceptions.CommandExecuteException;
 import tp1.p2.control.exceptions.GameException;
-import tp1.p2.control.exceptions.InvalidPositionException;
-import tp1.p2.control.exceptions.NotEnoughCoinsException;
 import tp1.p2.logic.GameWorld;
-import tp1.p2.view.Messages;
 
 public class PlantFactory {
 
@@ -32,14 +30,20 @@ public class PlantFactory {
 	}
 
 	public static GameObject spawnPlant(String plantName, GameWorld game, int col, int row, boolean consumeCoins) throws GameException {
-		game.isValidPosition();
-		for(Plant p: AVAILABLE_PLANTS) {
-			if(p.getName().toLowerCase().equals(plantName)|| p.getSymbol().toLowerCase().equals(plantName)) {
-				if(!consumeCoins){							
-					game.tryToBuy(p.getCoste());
-					return p.create(game, col, row);	
+		try {
+			game.checkValidPlantPosition(col, row);//fullOcupied
+			for(Plant p: AVAILABLE_PLANTS) {
+				if(p.getName().toLowerCase().equals(plantName)|| p.getSymbol().toLowerCase().equals(plantName)) {
+					if(consumeCoins){				
+						game.tryToBuy(p.getCoste());
+						return p.create(game, col, row);
+					}else {
+						return p.create(game, col, row);
+					}
 				}
-			}
+		}}catch(CommandExecuteException a) {
+			throw new CommandExecuteException(a);
+			
 		}
 		return null;
 	}

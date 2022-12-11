@@ -83,7 +83,6 @@ public abstract class Zombie extends GameObject{
 	@Override
 	public boolean receivePlantAttack(int damage) {
 		this.lifes-=damage;
-		game.playerWin();
 		return true;
 	}
 
@@ -92,7 +91,7 @@ public abstract class Zombie extends GameObject{
 		return this.isInPosition(-1, this.row);
 	}
 	
-	public boolean catchSun() {
+	public boolean catchObject() {
 		return false;
 	}
 	

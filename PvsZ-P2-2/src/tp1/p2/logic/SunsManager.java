@@ -2,6 +2,7 @@ package tp1.p2.logic;
 
 import java.util.Random;
 
+import tp1.p2.control.exceptions.GameException;
 import tp1.p2.logic.gameobjects.Sun;
 
 public class SunsManager {
@@ -45,6 +46,8 @@ public class SunsManager {
 	public void addSun() {
 		int col = getRandomInt(GameWorld.NUM_COLS);
 		int row = getRandomInt(GameWorld.NUM_ROWS);
+
 		game.addItem(new Sun(game, col, row));
+		
 	}
 }

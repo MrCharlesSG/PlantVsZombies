@@ -49,11 +49,11 @@ public class CatchCommand extends Command {
 	public boolean execute(GameWorld game) throws GameException {
 		if(!caughtSunThisCycle) {
 			try {
-				game.catchObject(this.col, this.row);
+				game.tryToCatchObject(col, row);
 				caughtSunThisCycle=true;
 				return true;
 			}catch(CommandExecuteException e) {
-				throw e;
+				throw new CommandExecuteException(e);
 			}
 		}else {
 			throw new CommandExecuteException(Messages.SUN_ALREADY_CAUGHT);

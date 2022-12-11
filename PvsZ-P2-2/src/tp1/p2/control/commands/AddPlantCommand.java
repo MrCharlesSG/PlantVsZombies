@@ -50,7 +50,7 @@ public class AddPlantCommand extends Command implements Cloneable {
 	@Override
 	public boolean execute(GameWorld game)  throws GameException {
 		try{
-			game.addObject(PlantFactory.spawnPlant(plantName, game, col, row, consumeCoins));
+			game.addItem(PlantFactory.spawnPlant(plantName, game, col, row, consumeCoins));
 			game.update();
 			return true;
 		}catch(CommandExecuteException e){

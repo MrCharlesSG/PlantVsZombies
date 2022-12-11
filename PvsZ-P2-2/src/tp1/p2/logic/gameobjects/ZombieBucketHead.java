@@ -54,5 +54,5 @@ public class ZombieBucketHead extends Zombie{
 	@Override
 	public GameObject create(GameWorld game, int col, int row) {
 		return new ZombieBucketHead(game, col, row);
-	}	
+	}
 }

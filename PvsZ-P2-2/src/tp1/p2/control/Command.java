@@ -114,7 +114,7 @@ public abstract class Command {
 	public abstract boolean execute(GameWorld game) throws GameException;
 
 	public Command create(String[] parameters) throws GameException {
-		if (parameters.length != 0) {
+		if (parameters.length != 1) {
 			throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER);
 		}
 		return this;
@@ -127,13 +127,5 @@ public abstract class Command {
 	 */
 	protected void newCycleStarted() {
 		
-	}
-	
-	protected boolean isNumeric(String str) {
-		return  str!= null && str.matches("[0-9.]+");
-	}
-	
-	protected boolean validPosition(int col, int row) {
-		return col<GameWorld.NUM_COLS && row <GameWorld.NUM_ROWS && col>=0 && row>=0;
 	}
 }

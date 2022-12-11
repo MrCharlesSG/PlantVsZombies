@@ -52,17 +52,11 @@ public interface GameWorld {
 	
 	public int getCycle();
 
-	boolean catchObject(int col, int row) throws GameException;
-
 	void convertSun(int valueOfChange);
 
 	void pushAction(GameAction gameAction);
 	
 	boolean isFullyOcuppied(int col, int row);
 
-	void spawnPlant(int col, int row, String plantName);
-
-	void addObject(GameObject spawnPlant) throws GameException;
-
-	void isValidPosition() throws GameException;
+	void addItem(GameObject spawnPlant);
 }

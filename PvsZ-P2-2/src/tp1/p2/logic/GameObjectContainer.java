@@ -15,7 +15,7 @@ public class GameObjectContainer {
 	}
 	
 	// TODO add your code here
-	public void addObject(GameObject obj) {
+	public void addItem(GameObject obj) {
 		gameObjects.add(obj);
 		obj.onEnter();
 	}
@@ -78,14 +78,14 @@ public class GameObjectContainer {
 		return false;
 	}
 
-	public boolean catchSun(int col, int row) {
+	public boolean catchObject(int col, int row) {
 		int i=0;
 		boolean cogido=false;
 		GameObject aux;
 		while (i<gameObjects.size()) {
 			aux=gameObjects.get(i);
 			if(aux.isInPosition(col, row)) {
-				if(aux.catchSun()) {
+				if(aux.catchObject()) {
 					aux.onExit();
 					gameObjects.remove(i);
 					cogido=true;

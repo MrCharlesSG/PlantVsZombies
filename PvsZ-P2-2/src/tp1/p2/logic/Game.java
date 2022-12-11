@@ -9,8 +9,12 @@ import java.util.Random;
 import tp1.p2.control.Command;
 import tp1.p2.control.Level;
 import tp1.p2.control.exceptions.GameException;
+import tp1.p2.control.exceptions.InvalidPositionException;
+import tp1.p2.control.exceptions.NotCatchablePositionException;
+import tp1.p2.control.exceptions.NotEnoughCoinsException;
 import tp1.p2.logic.actions.GameAction;
 import tp1.p2.logic.gameobjects.GameObject;
+import tp1.p2.view.Messages;
 
 
 public class Game implements GameStatus, GameWorld{
@@ -82,11 +86,6 @@ public class Game implements GameStatus, GameWorld{
 	@Override
 	public boolean execute(Command command) throws GameException {
 		return command.execute(this);
-	}
-
-	@Override
-	public void addItem (GameObject obj) {
-		container.addObject(obj);
 	}
 	
 	@Override
@@ -171,11 +170,6 @@ public class Game implements GameStatus, GameWorld{
 	public void reduceZombie() {
 		zombiesMan.reduceZombies();
 	}
-
-	@Override
-	public boolean catchSun(int col, int row) {
-		return container.catchSun(col, row);
-	}
 	
 	@Override
 	public void update() throws GameException{
@@ -238,9 +232,47 @@ public class Game implements GameStatus, GameWorld{
 
 	@Override
 	public int getCaughtSuns() {
-		// TODO Auto-generated method stub
 		return this.sunMan.getCatchedSuns();
 	}
 
-	
+	@Override
+	public void checkValidZombiePosition(int col, int row) throws GameException {
+		if((col<0 && row<0 && col>NUM_COLS && row>NUM_ROWS) || container.isFullyOccupied(col, row)) {
+			
+			throw new InvalidPositionException(String.format(Messages.INVALID_POSITION, col, row));
+			
+		}	
+	}
+
+	@Override
+	public void tryToCatchObject(int col, int row) throws GameException {
+		if(!container.catchObject(col, row)) {
+			throw new NotCatchablePositionException(String.format(Messages.NO_CATCHABLE_IN_POSITION, col, row));
+		}
+	}
+
+	@Override
+	public void tryToBuy(int cost) throws GameException {
+		if(cost<=this.suncoins) {
+			this.suncoins-=cost;
+		}else {
+			throw new NotEnoughCoinsException(Messages.NOT_ENOUGH_COINS);
+		}
+	}
+
+	@Override
+	public void checkValidPlantPosition(int col, int row) throws GameException {
+		if((col<0 && row<0 && col>NUM_COLS && row>NUM_ROWS) || container.isFullyOccupied(col, row)) {
+			
+			throw new InvalidPositionException(String.format(Messages.INVALID_POSITION, col, row));
+			
+		}
+
+	}
+
+	@Override
+	public void addItem(GameObject obj) {
+		container.addItem(obj);
+		
+	}	
 }
