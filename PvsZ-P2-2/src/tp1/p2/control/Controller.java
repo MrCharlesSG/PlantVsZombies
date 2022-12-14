@@ -85,8 +85,21 @@ public class Controller {
 		if (refreshDisplay) {
 			printGame();
 		}
+		
+		try {
+			if(game.newRecord()) {
+				printNewRecord();
+			}
+		}catch(GameException e) {
+			System.out.println(error(e.getMessage()));
+		}
 
 		printEndMessage();
+	}
+
+	private void printNewRecord() {
+		System.out.println(Messages.NEW_RECORD+" "+ game.getRecord()+Messages.LINE_SEPARATOR);
+		
 	}
 
 }

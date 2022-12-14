@@ -31,9 +31,9 @@ public class ExplosionAction implements GameAction {
 				GameItem o = game.getGameItemInPosition(col, row);
 				if(o!=null) {
 					if(!plantExplosion) {
-						o.receiveZombieAttack(damage);
+						o.receiveZombieExplosion(damage);
 					}else {
-						o.receivePlantAttack(damage);
+						o.receivePlantExplosion(damage);
 					}
 
 				}

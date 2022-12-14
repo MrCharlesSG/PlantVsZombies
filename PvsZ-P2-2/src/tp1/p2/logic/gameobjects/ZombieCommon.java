@@ -32,4 +32,5 @@ public class ZombieCommon extends Zombie {
 	public GameObject create(GameWorld game, int col, int row) {
 		return new ZombieCommon(game, col, row);
 	}	
+	
 }

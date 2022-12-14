@@ -96,7 +96,7 @@ public class Messages {
 
 	public static final String CURRENT_RECORD = "%s record is %d";
 
-
+	public static final String ERROR_READING_FILE = "An error ocurred on reading the file";
 
 	//
 	// Game Objects
@@ -284,5 +284,4 @@ public class Messages {
 	public static final String zombieDescription(String zombieNameAndShortcut, int speed, int damage, int endurance) {
 		return Messages.ZOMBIE_DESCRIPTION.formatted(zombieNameAndShortcut, speed, damage, endurance);
 	}
-
 }

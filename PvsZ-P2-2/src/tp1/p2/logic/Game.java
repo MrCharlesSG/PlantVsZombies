@@ -2,16 +2,19 @@
 package tp1.p2.logic;
 
 
+import java.io.FileNotFoundException;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Random;
 
 import tp1.p2.control.Command;
 import tp1.p2.control.Level;
+import tp1.p2.control.exceptions.CommandParseException;
 import tp1.p2.control.exceptions.GameException;
 import tp1.p2.control.exceptions.InvalidPositionException;
 import tp1.p2.control.exceptions.NotCatchablePositionException;
 import tp1.p2.control.exceptions.NotEnoughCoinsException;
+import tp1.p2.control.exceptions.RecordException;
 import tp1.p2.logic.actions.GameAction;
 import tp1.p2.logic.gameobjects.GameObject;
 import tp1.p2.view.Messages;
@@ -24,6 +27,8 @@ public class Game implements GameStatus, GameWorld{
 	private boolean playerQuits;
 	
 	private int suncoins;
+	
+	private int score;
 	
 	GameObjectContainer container;
 	
@@ -42,6 +47,8 @@ public class Game implements GameStatus, GameWorld{
 	private boolean finish;
 
 	private Level level;
+	
+	Record record;
 	
 	private boolean theWinner; // si true ganan plantas, si false ganan zombies
 	
@@ -65,16 +72,22 @@ public class Game implements GameStatus, GameWorld{
 	 */
 	@Override
 	public void reset(Level level, long seed) throws GameException {
-		this.suncoins=INITIAL_SUNCOINS;
-		this.cycle=0;
-		rand = new Random(seed);
-		this.finish=false;
-		this.playerQuits=false;
-		this.theWinner=false;
-		this.actions = new ArrayDeque<>();
-		this.sunMan=new SunsManager(this, rand);
-		this.container.reset();
-		this.zombiesMan.reset(level, rand);
+		try {
+			this.suncoins=INITIAL_SUNCOINS;
+			this.cycle=0;
+			rand = new Random(seed);
+			this.finish=false;
+			this.playerQuits=false;
+			this.theWinner=false;
+			this.actions = new ArrayDeque<>();
+			this.sunMan=new SunsManager(this, rand);
+			this.container.reset();
+			this.zombiesMan.reset(level, rand);
+			this.score=0;
+			this.record=new Record(level, 0).loadRecord(level);
+		}catch(CommandParseException a) {
+			throw new CommandParseException(a);
+		}
 	}
 	
 	
@@ -274,5 +287,43 @@ public class Game implements GameStatus, GameWorld{
 	public void addItem(GameObject obj) {
 		container.addItem(obj);
 		
-	}	
+	}
+
+	@Override
+	public int getRecord() {
+		return record.getCurrentRecord();
+	}
+
+	@Override
+	public String getLevelName() {
+		return record.getLevelName();
+	}
+
+	@Override
+	public void incrementaPuntos() {
+		this.score+=10;
+	}
+
+	public boolean newRecord() throws CommandParseException {
+		if(getRecord()<=this.score) {
+			try {
+				Record aux=new Record(level, this.score);
+				record.setRecord(aux);
+				record.saveRecord();
+				return true;
+			}catch(RecordException a) {
+				throw new CommandParseException(a);
+			}
+			
+		}else {
+			return false;
+		}
+	}
+
+	@Override
+	public int getScore() {
+		return this.score;
+	}
+	
+	
 }

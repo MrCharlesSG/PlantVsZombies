@@ -55,6 +55,7 @@ public abstract class Zombie extends GameObject{
 	@Override
 	public void onExit() {
 		game.reduceZombie();
+		game.incrementaPuntos();
 	}
 	
 	
@@ -96,5 +97,18 @@ public abstract class Zombie extends GameObject{
 	}
 	
 	abstract public int getIniLifes();
+	
+	@Override
+	public void receiveZombieExplosion(int damage) {
+	}
+
+	@Override
+	public void receivePlantExplosion(int damage) {
+		this.lifes-=damage;
+		if(!this.isAlive()) {
+			game.incrementaPuntos();
+		}
+		
+	}
 
 }

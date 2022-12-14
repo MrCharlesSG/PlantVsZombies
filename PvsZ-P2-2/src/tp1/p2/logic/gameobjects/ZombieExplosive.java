@@ -30,6 +30,7 @@ public class ZombieExplosive extends Zombie{
 	public void onExit() {
 		game.pushAction(new ExplosionAction(col,row, EXPLOSION_DAMAGE, false));
 		game.reduceZombie();
+		game.incrementaPuntos();
 	}
 
 	@Override

@@ -86,4 +86,14 @@ public class Sun extends GameObject {
 		return null;
 	}
 
+	@Override
+	public void receiveZombieExplosion(int damage) {
+		
+	}
+
+	@Override
+	public void receivePlantExplosion(int damage) {
+		
+	}
+
 }

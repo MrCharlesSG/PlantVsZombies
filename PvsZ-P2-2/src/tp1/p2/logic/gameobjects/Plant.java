@@ -55,4 +55,16 @@ public abstract class Plant extends GameObject {
 	public int getCoste() {
 		return this.coste;
 	}
+
+
+	@Override
+	public void receiveZombieExplosion(int damage) {
+		this.lifes-=damage;
+		
+	}
+
+	@Override
+	public void receivePlantExplosion(int damage) {
+		
+	}
 }

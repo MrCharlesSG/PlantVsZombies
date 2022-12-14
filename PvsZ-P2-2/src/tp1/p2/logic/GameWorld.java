@@ -59,4 +59,10 @@ public interface GameWorld {
 	boolean isFullyOcuppied(int col, int row);
 
 	void addItem(GameObject spawnPlant);
+
+	int getRecord();
+
+	String getLevelName();
+
+	void incrementaPuntos();
 }

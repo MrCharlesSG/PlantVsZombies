@@ -2,6 +2,8 @@ package tp1.p2.logic;
 
 public interface GameStatus {
 
+	int getScore();
+
 	int getCycle();
 
 	int getSuncoins();

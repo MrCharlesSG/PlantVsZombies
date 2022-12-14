@@ -63,9 +63,14 @@ public class CatchCommand extends Command {
 	@Override
 	public Command create(String[] parameters)throws GameException {
 		try {
-			this.row=Integer.parseInt(parameters[2]);
-			this.col=Integer.parseInt(parameters[1]);
-			return this;
+			if(parameters.length==3) {
+				this.row=Integer.parseInt(parameters[2]);
+				this.col=Integer.parseInt(parameters[1]);
+				return this;
+			}else {
+				throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER);
+			}
+			
 		}catch(NumberFormatException e) {
 			throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER, e);
 		}
