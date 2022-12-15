@@ -5,8 +5,8 @@ Random generator initialized with seed: 360
 Number of cycles: 0
 Sun coins: 50
 Remaining zombies: 10
-Generated suns: 12
-Caught suns: 5
+Generated suns: 27
+Caught suns: 17
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -30,8 +30,8 @@ Command >
 Number of cycles: 1
 Sun coins: 50
 Remaining zombies: 10
-Generated suns: 12
-Caught suns: 5
+Generated suns: 27
+Caught suns: 17
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -50,8 +50,8 @@ Command >
 Number of cycles: 2
 Sun coins: 50
 Remaining zombies: 10
-Generated suns: 12
-Caught suns: 5
+Generated suns: 27
+Caught suns: 17
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -70,8 +70,8 @@ Command >
 Number of cycles: 3
 Sun coins: 50
 Remaining zombies: 10
-Generated suns: 12
-Caught suns: 5
+Generated suns: 27
+Caught suns: 17
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -90,8 +90,8 @@ Command >
 Number of cycles: 4
 Sun coins: 50
 Remaining zombies: 9
-Generated suns: 12
-Caught suns: 5
+Generated suns: 27
+Caught suns: 17
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -120,8 +120,8 @@ Command >
 Number of cycles: 5
 Sun coins: 50
 Remaining zombies: 9
-Generated suns: 12
-Caught suns: 5
+Generated suns: 27
+Caught suns: 17
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -140,8 +140,8 @@ Command >
 Number of cycles: 6
 Sun coins: 50
 Remaining zombies: 8
-Generated suns: 13
-Caught suns: 5
+Generated suns: 28
+Caught suns: 17
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -160,8 +160,8 @@ Command >
 Number of cycles: 7
 Sun coins: 50
 Remaining zombies: 7
-Generated suns: 13
-Caught suns: 5
+Generated suns: 28
+Caught suns: 17
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -180,8 +180,8 @@ Command >
 Number of cycles: 8
 Sun coins: 50
 Remaining zombies: 7
-Generated suns: 13
-Caught suns: 5
+Generated suns: 28
+Caught suns: 17
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -200,8 +200,8 @@ Command >
 Number of cycles: 9
 Sun coins: 50
 Remaining zombies: 7
-Generated suns: 13
-Caught suns: 5
+Generated suns: 28
+Caught suns: 17
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -220,8 +220,8 @@ Command >
 Number of cycles: 10
 Sun coins: 50
 Remaining zombies: 6
-Generated suns: 13
-Caught suns: 5
+Generated suns: 28
+Caught suns: 17
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -240,8 +240,8 @@ Command >
 Number of cycles: 11
 Sun coins: 50
 Remaining zombies: 6
-Generated suns: 13
-Caught suns: 5
+Generated suns: 28
+Caught suns: 17
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -260,8 +260,8 @@ Command >
 Number of cycles: 12
 Sun coins: 50
 Remaining zombies: 6
-Generated suns: 14
-Caught suns: 5
+Generated suns: 29
+Caught suns: 17
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -280,8 +280,8 @@ Command >
 Number of cycles: 13
 Sun coins: 50
 Remaining zombies: 6
-Generated suns: 14
-Caught suns: 5
+Generated suns: 29
+Caught suns: 17
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -300,8 +300,8 @@ Command >
 Number of cycles: 14
 Sun coins: 50
 Remaining zombies: 6
-Generated suns: 14
-Caught suns: 5
+Generated suns: 29
+Caught suns: 17
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -313,8 +313,6 @@ Score: 0
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
   3 |              |              |              |              |              |  *[02]Ez[05] |              |              |              
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
-
-New record!:  0
 
 Game over
 Zombies win!

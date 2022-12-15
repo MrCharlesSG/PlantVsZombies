@@ -32,8 +32,9 @@ public class ListPlantsCommand extends Command {
 		StringBuilder buffer = new StringBuilder();
 
 		for (Plant p:PlantFactory.getAvailablePlants()) {
-			buffer.append(p.getDescription());
+
 			buffer.append(Messages.LINE_SEPARATOR);
+			buffer.append(p.getDescription());
 		}
 		System.out.println(buffer.toString());
 		return false;

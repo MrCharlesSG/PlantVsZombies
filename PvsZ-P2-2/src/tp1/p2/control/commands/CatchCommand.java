@@ -4,7 +4,6 @@ import tp1.p2.control.Command;
 import tp1.p2.control.exceptions.CommandExecuteException;
 import tp1.p2.control.exceptions.CommandParseException;
 import tp1.p2.control.exceptions.GameException;
-import tp1.p2.control.exceptions.NotCatchablePositionException;
 import tp1.p2.logic.GameWorld;
 import tp1.p2.view.Messages;
 
@@ -51,8 +50,9 @@ public class CatchCommand extends Command {
 			try {
 				game.tryToCatchObject(col, row);
 				caughtSunThisCycle=true;
+				
 				return true;
-			}catch(CommandExecuteException e) {
+			}catch(GameException e) {
 				throw new CommandExecuteException(e);
 			}
 		}else {

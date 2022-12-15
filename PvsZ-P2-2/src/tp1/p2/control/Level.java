@@ -1,7 +1,5 @@
 package tp1.p2.control;
 
-import tp1.p2.control.exceptions.CommandExecuteException;
-import tp1.p2.control.exceptions.GameException;
 
 /**
  * Represents the allowed levels in the game.

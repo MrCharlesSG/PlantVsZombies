@@ -1,6 +1,5 @@
 package tp1.p2.logic.gameobjects;
 
-import tp1.p2.logic.GameItem;
 import tp1.p2.logic.GameWorld;
 import tp1.p2.view.Messages;
 
@@ -46,27 +45,13 @@ public class Peashooter extends Plant {
 	
 	@Override
 	public void update() {
-		peashooterDispara(row, DANO);
+		peashooterDispara();
 	}
 	
-	private void peashooterDispara(int row, int DANO) {
-		int i=this.col+1;
-		boolean yaDisparado=false;
-		GameItem obj=game.getGameItemInPosition(i, row);
-		while(i<GameWorld.NUM_COLS && !yaDisparado) {
-			if(obj!=null) {
-				if(obj.receivePlantAttack(DANO)) {
-					yaDisparado=true;
-				}else {
-					i++;
-					obj=game.getGameItemInPosition(i,row);
-				}
-			} 
-			else {
-				i++;
-				obj=game.getGameItemInPosition(i,row);
-			}
-		}
+	private void peashooterDispara() {
+
+		game.peashooterDispara(this.col+1, this.row, DANO);
+		
 	}
 
 	@Override

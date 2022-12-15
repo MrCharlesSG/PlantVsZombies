@@ -1,8 +1,6 @@
 
 package tp1.p2.logic;
 
-
-import java.io.FileNotFoundException;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Random;
@@ -85,8 +83,8 @@ public class Game implements GameStatus, GameWorld{
 			this.zombiesMan.reset(level, rand);
 			this.score=0;
 			this.record=new Record(level, 0).loadRecord(level);
-		}catch(CommandParseException a) {
-			throw new CommandParseException(a);
+		}catch(GameException a) {
+			throw new RecordException(a);
 		}
 	}
 	
@@ -101,14 +99,6 @@ public class Game implements GameStatus, GameWorld{
 		return command.execute(this);
 	}
 	
-	@Override
-	public boolean esSuficiente(int coste) {
-		if(coste<=this.suncoins) {
-			this.suncoins-=coste;
-			return true;
-		}
-		return false;
-	}
 
 	
 
@@ -134,7 +124,6 @@ public class Game implements GameStatus, GameWorld{
 
 	@Override
 	public String positionToString(int col, int row) {
-		
 		return container.positionToString( col,row);
 	}
 
@@ -146,11 +135,6 @@ public class Game implements GameStatus, GameWorld{
 	@Override
 	public int getRemainingZombies() {
 		return zombiesMan.getRemainingZombies();
-	}
-
-	@Override
-	public GameObject isInPosition(int col, int row) {
-		return container.anObjectInPosition(col, row);
 	}
 
 	@Override
@@ -172,11 +156,6 @@ public class Game implements GameStatus, GameWorld{
 			return true;
 		}
 		return false;
-	}
-
-	@Override
-	public GameItem getGameItemInPosition(int col, int row) {
-		return this.isInPosition(col, row);
 	}
 
 	@Override
@@ -305,25 +284,35 @@ public class Game implements GameStatus, GameWorld{
 	}
 
 	public boolean newRecord() throws CommandParseException {
-		if(getRecord()<=this.score) {
-			try {
-				Record aux=new Record(level, this.score);
-				record.setRecord(aux);
-				record.saveRecord();
-				return true;
-			}catch(RecordException a) {
-				throw new CommandParseException(a);
+		if(this.theWinner){
+			if(getRecord()< this.score ) {
+				try {
+					Record aux=new Record(level, this.score);
+					record.setRecord(aux);
+					record.saveRecord();
+					return true;
+				}catch(GameException a) {
+					throw new CommandParseException(a);
+				}
+				
 			}
-			
-		}else {
-			return false;
 		}
+		return false;
+		
 	}
 
 	@Override
 	public int getScore() {
 		return this.score;
 	}
+
+	@Override
+	public void peashooterDispara(int col,int row, int DANO) {
+		container.peashooterDispara(col,row, DANO);
+	}
 	
-	
+	@Override
+	public GameItem getGameItemInPosition(int i, int row) {
+		return container.anObjectInPosition(i, row);
+	}
 }

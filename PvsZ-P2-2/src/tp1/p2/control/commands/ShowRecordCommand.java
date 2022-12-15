@@ -30,7 +30,6 @@ public class ShowRecordCommand extends Command{
 	@Override
 	public boolean execute(GameWorld game) throws GameException {
 		System.out.format("%s record is %s%n", game.getLevelName(), game.getRecord());
-		System.out.print(Messages.LINE_SEPARATOR);
 		return false;
 	}
 

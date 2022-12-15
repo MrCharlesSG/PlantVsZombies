@@ -5,8 +5,8 @@ Random generator initialized with seed: 25
 Number of cycles: 0
 Sun coins: 50
 Remaining zombies: 3
-Generated suns: 9
-Caught suns: 4
+Generated suns: 24
+Caught suns: 16
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -40,8 +40,8 @@ Command >
 Number of cycles: 1
 Sun coins: 50
 Remaining zombies: 3
-Generated suns: 9
-Caught suns: 4
+Generated suns: 24
+Caught suns: 16
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -60,8 +60,8 @@ Command >
 Number of cycles: 2
 Sun coins: 50
 Remaining zombies: 3
-Generated suns: 9
-Caught suns: 4
+Generated suns: 24
+Caught suns: 16
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -80,8 +80,8 @@ Command >
 Number of cycles: 3
 Sun coins: 50
 Remaining zombies: 3
-Generated suns: 9
-Caught suns: 4
+Generated suns: 24
+Caught suns: 16
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -116,8 +116,8 @@ Command >
 Number of cycles: 4
 Sun coins: 0
 Remaining zombies: 3
-Generated suns: 9
-Caught suns: 4
+Generated suns: 24
+Caught suns: 16
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -137,8 +137,6 @@ Command >
 
 Command > 
 [DEBUG] Executing: e
-
-New record!:  0
 
 Game over
 Player leaves the game

@@ -250,6 +250,8 @@ public class Messages {
 
 	public static final String COMMAND_SHOW_RECORD_HELP = "show record of the current level";
 
+	public static final String INCORRECT_LEVEL = "Incorrect Level";
+
 
 	/**
 	 * Formats an debug message.

@@ -47,12 +47,12 @@ public class Record {
 			
 		}
 		catch (FileNotFoundException e){
-			throw new RecordException(Messages.ERROR_READING_FILE);
+			throw new RecordException(Messages.ERROR_READING_FILE, e);
 		}
 		return this;
 	}
 	
-	public void saveRecord() throws RecordException {
+	public void saveRecord() throws GameException {
 		String filename = "record.txt";
 		String actualizarRecord="";
 		File file = new File(filename);

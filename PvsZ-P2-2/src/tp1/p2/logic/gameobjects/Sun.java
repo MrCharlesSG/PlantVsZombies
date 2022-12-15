@@ -58,6 +58,7 @@ public class Sun extends GameObject {
 	@Override
 	public void onExit() {
 		Sun.catchedSuns++;
+		
 	}
 
 	@Override

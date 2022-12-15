@@ -2,7 +2,6 @@ package tp1.p2.logic;
 
 import java.util.Random;
 
-import tp1.p2.control.exceptions.GameException;
 import tp1.p2.logic.gameobjects.Sun;
 
 public class SunsManager {

@@ -3,8 +3,6 @@ package tp1.p2.control.commands;
 import tp1.p2.control.Command;
 import tp1.p2.logic.GameWorld;
 import tp1.p2.view.Messages;
-import tp1.p2.control.exceptions.CommandExecuteException;
-import tp1.p2.control.exceptions.CommandParseException;
 import tp1.p2.control.exceptions.GameException;
 
 public class AddPlantCheatCommand extends Command {

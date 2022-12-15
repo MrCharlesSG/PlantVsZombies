@@ -89,12 +89,21 @@ public class Controller {
 		try {
 			if(game.newRecord()) {
 				printNewRecord();
+			}else{
+				if(game.playerWin()) {
+					printScore();
+				}
 			}
 		}catch(GameException e) {
 			System.out.println(error(e.getMessage()));
 		}
 
 		printEndMessage();
+	}
+
+	private void printScore() {
+		System.out.println(Messages.SCORE+" "+ game.getScore());
+		
 	}
 
 	private void printNewRecord() {

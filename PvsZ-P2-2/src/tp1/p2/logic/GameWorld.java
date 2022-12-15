@@ -1,15 +1,11 @@
 package tp1.p2.logic;
 
-import static tp1.p2.view.Messages.error;
-
 import tp1.p2.control.Command;
 import tp1.p2.control.Level;
 import tp1.p2.control.exceptions.GameException;
 import tp1.p2.logic.actions.GameAction;
 import tp1.p2.logic.gameobjects.GameObject;
-import tp1.p2.control.Level;
-import tp1.p2.control.exceptions.GameException;
-import tp1.p2.view.Messages;
+
 
 public interface GameWorld {
 
@@ -28,8 +24,6 @@ public interface GameWorld {
 
 	void tryToCatchObject(int col, int row) throws GameException;
 	
-	boolean esSuficiente(int coste);
-
 	void reset(Level level, long seed) throws GameException;
 	
 	void reset() throws GameException ;
@@ -37,8 +31,6 @@ public interface GameWorld {
 	void tryToBuy(int cost) throws GameException;
 	
 	void checkValidPlantPosition(int col, int row) throws GameException;
-	
-	GameObject isInPosition(int col, int row);
 		
 	void generaSunCoins();
 	
@@ -47,8 +39,6 @@ public interface GameWorld {
 	void zombiesWin();
 
 	boolean playerWin();
-
-	GameItem getGameItemInPosition(int col, int row);
 	
 	public int getCycle();
 
@@ -65,4 +55,8 @@ public interface GameWorld {
 	String getLevelName();
 
 	void incrementaPuntos();
+
+	void peashooterDispara(int col,int row, int DANO);
+
+	GameItem getGameItemInPosition(int i, int row);
 }

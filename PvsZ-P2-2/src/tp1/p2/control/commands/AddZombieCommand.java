@@ -52,8 +52,8 @@ public class AddZombieCommand extends Command {
 			game.addItem(ZombieFactory.spawnZombie(row,col, game, zombieIdx));
 			game.update();
 			return true;
-		}catch(CommandExecuteException e){
-			throw e;
+		}catch(GameException e){
+			throw new CommandExecuteException(e);
 		}
 	}
 
@@ -70,7 +70,7 @@ public class AddZombieCommand extends Command {
 				return this;
 			}
 		} catch(NumberFormatException e) {
-			throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER, e);
+			throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER);
 		}
 	}
 

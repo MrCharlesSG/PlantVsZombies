@@ -136,6 +136,25 @@ public class GameObjectContainer {
 		return fullyOcuppied;
 	}
 
+	public void peashooterDispara(int col,int row, int dANO) {
+		boolean disparado=false;
+		int i=col;
+		GameItem obj = this.anObjectInPosition(i, row);
+		while(!disparado && i<GameWorld.NUM_COLS) {
+			if(obj!=null) {
+				if(obj.receivePlantAttack(dANO)) {
+					disparado=true;
+				}else {
+					i++;
+					obj = this.anObjectInPosition(i, row);
+				}		
+			}else {
+					i++;
+					obj = this.anObjectInPosition(i, row);
+			}
+		}
+	}
+
 	// TODO add your code here
 
 }

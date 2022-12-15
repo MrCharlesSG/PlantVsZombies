@@ -65,8 +65,10 @@ public class ResetCommand extends Command {
 				}catch(NumberFormatException e) {
 					throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER, e);
 				}
+			}else {
+				throw new CommandParseException(Messages.INCORRECT_LEVEL+Messages.LINE_SEPARATOR+Messages.ALLOWED_LEVELS);
 			}
-			throw new CommandParseException();
+			
 		}else {
 			return new ResetCommand();
 		}

@@ -5,8 +5,8 @@ Random generator initialized with seed: 25
 Number of cycles: 0
 Sun coins: 50
 Remaining zombies: 3
-Generated suns: 8
-Caught suns: 4
+Generated suns: 23
+Caught suns: 16
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -40,8 +40,8 @@ Command >
 Number of cycles: 1
 Sun coins: 50
 Remaining zombies: 3
-Generated suns: 8
-Caught suns: 4
+Generated suns: 23
+Caught suns: 16
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -60,8 +60,8 @@ Command >
 Number of cycles: 2
 Sun coins: 50
 Remaining zombies: 3
-Generated suns: 8
-Caught suns: 4
+Generated suns: 23
+Caught suns: 16
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -80,8 +80,8 @@ Command >
 Number of cycles: 3
 Sun coins: 50
 Remaining zombies: 3
-Generated suns: 8
-Caught suns: 4
+Generated suns: 23
+Caught suns: 16
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -100,8 +100,8 @@ Command >
 Number of cycles: 4
 Sun coins: 50
 Remaining zombies: 3
-Generated suns: 8
-Caught suns: 4
+Generated suns: 23
+Caught suns: 16
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -120,8 +120,8 @@ Command >
 Number of cycles: 5
 Sun coins: 50
 Remaining zombies: 3
-Generated suns: 8
-Caught suns: 4
+Generated suns: 23
+Caught suns: 16
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -140,8 +140,8 @@ Command >
 Number of cycles: 6
 Sun coins: 50
 Remaining zombies: 3
-Generated suns: 9
-Caught suns: 4
+Generated suns: 24
+Caught suns: 16
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -160,8 +160,8 @@ Command >
 Number of cycles: 7
 Sun coins: 50
 Remaining zombies: 3
-Generated suns: 9
-Caught suns: 4
+Generated suns: 24
+Caught suns: 16
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -180,8 +180,8 @@ Command >
 Number of cycles: 8
 Sun coins: 50
 Remaining zombies: 3
-Generated suns: 9
-Caught suns: 4
+Generated suns: 24
+Caught suns: 16
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -200,8 +200,8 @@ Command >
 Number of cycles: 9
 Sun coins: 50
 Remaining zombies: 3
-Generated suns: 9
-Caught suns: 4
+Generated suns: 24
+Caught suns: 16
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -220,8 +220,8 @@ Command >
 Number of cycles: 10
 Sun coins: 50
 Remaining zombies: 3
-Generated suns: 9
-Caught suns: 4
+Generated suns: 24
+Caught suns: 16
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -240,8 +240,8 @@ Command >
 Number of cycles: 0
 Sun coins: 50
 Remaining zombies: 3
-Generated suns: 9
-Caught suns: 4
+Generated suns: 24
+Caught suns: 16
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -260,8 +260,8 @@ Command >
 Number of cycles: 1
 Sun coins: 50
 Remaining zombies: 3
-Generated suns: 9
-Caught suns: 4
+Generated suns: 24
+Caught suns: 16
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -280,8 +280,8 @@ Command >
 Number of cycles: 2
 Sun coins: 50
 Remaining zombies: 3
-Generated suns: 9
-Caught suns: 4
+Generated suns: 24
+Caught suns: 16
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -300,8 +300,8 @@ Command >
 Number of cycles: 3
 Sun coins: 50
 Remaining zombies: 3
-Generated suns: 9
-Caught suns: 4
+Generated suns: 24
+Caught suns: 16
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -320,8 +320,8 @@ Command >
 Number of cycles: 4
 Sun coins: 50
 Remaining zombies: 3
-Generated suns: 9
-Caught suns: 4
+Generated suns: 24
+Caught suns: 16
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -340,8 +340,8 @@ Command >
 Number of cycles: 5
 Sun coins: 50
 Remaining zombies: 3
-Generated suns: 9
-Caught suns: 4
+Generated suns: 24
+Caught suns: 16
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -357,17 +357,20 @@ Score: 0
 Command > 
 [DEBUG] Executing: r 37 HARD
 
-[ERROR] Error: null
+[ERROR] Error: Incorrect Level
+Level must be one of: EASY, HARD, INSANE
 
 Command > 
 [DEBUG] Executing: r a H
 
-[ERROR] Error: null
+[ERROR] Error: Incorrect Level
+Level must be one of: EASY, HARD, INSANE
 
 Command > 
 [DEBUG] Executing: r 45 L
 
-[ERROR] Error: null
+[ERROR] Error: Incorrect Level
+Level must be one of: EASY, HARD, INSANE
 
 Command > 
 [DEBUG] Executing: r HARD 37
@@ -375,8 +378,8 @@ Command >
 Number of cycles: 0
 Sun coins: 50
 Remaining zombies: 5
-Generated suns: 9
-Caught suns: 4
+Generated suns: 24
+Caught suns: 16
 Score: 0
            0              1              2              3              4              5              6              7              8       
      ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── ────────────── 
@@ -391,8 +394,6 @@ Score: 0
 
 Command > 
 [DEBUG] Executing: e
-
-New record!:  0
 
 Game over
 Player leaves the game

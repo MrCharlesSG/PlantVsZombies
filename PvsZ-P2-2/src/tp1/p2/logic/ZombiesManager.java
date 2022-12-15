@@ -87,11 +87,6 @@ public class ZombiesManager {
 		return this.remainingZombies;
 	}
 
-	private boolean isPositionEmpty(int numCols, int row) {
-		
-		return !game.isFullyOcuppied(numCols, row);
-	}
-
 	public void reset(Level level, Random rand) {
 		this.level = level;
 		this.rand = rand;

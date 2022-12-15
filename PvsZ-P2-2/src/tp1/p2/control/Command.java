@@ -1,6 +1,5 @@
 package tp1.p2.control;
 
-import static tp1.p2.view.Messages.error;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;

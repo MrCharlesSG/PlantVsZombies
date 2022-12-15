@@ -35,8 +35,9 @@ public class ListZombiesCommand extends Command {
 		StringBuilder buffer = new StringBuilder();
 
 		for (Zombie zb:ZombieFactory.getAvailableZombies()) {
-			buffer.append(zb.getDescription());
+
 			buffer.append(Messages.LINE_SEPARATOR);
+			buffer.append(zb.getDescription());
 		}
 		System.out.println(buffer.toString());
 		return false;

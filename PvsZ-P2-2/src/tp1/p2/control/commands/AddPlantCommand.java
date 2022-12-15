@@ -53,8 +53,8 @@ public class AddPlantCommand extends Command implements Cloneable {
 			game.addItem(PlantFactory.spawnPlant(plantName, game, col, row, consumeCoins));
 			game.update();
 			return true;
-		}catch(CommandExecuteException e){
-			throw e;
+		}catch(GameException e){
+			throw new CommandExecuteException(e);
 		}
 		
 	}
@@ -77,7 +77,7 @@ public class AddPlantCommand extends Command implements Cloneable {
 			}
 			
 		}catch(NumberFormatException e) {
-			throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER, e);
+			throw new CommandParseException(Messages.COMMAND_INCORRECT_PARAMETER_NUMBER);
 		}
 	}
 }
